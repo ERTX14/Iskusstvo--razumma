@@ -1,0 +1,10 @@
+name = "iskusstvo-razuma-api"
+main = "src.js"
+compatibility_date = "2026-10-28"
+
+[vars]
+SITE_ORIGIN = "https://YOUR-USERNAME.github.io"
+GITHUB_OWNER = "YOUR-GITHUB-USERNAME"
+GITHUB_REPO = "YOUR-REPOSITORY"
+GITHUB_BRANCH = "main"
+CONTENT_PATH = "data/site-content.json"

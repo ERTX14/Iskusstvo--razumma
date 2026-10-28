@@ -1,0 +1,183 @@
+<!-- Файл: courses.html | Основные секции отмечены комментариями; стили находятся в css/style.css. -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Курсы</title>
+<link rel="stylesheet" href="css/style.css"><style>
+
+    body{background:linear-gradient(
+        180deg,
+        #e45a1f,
+        #ff8c5a
+    );}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo"><img src="img/Frame 23.png"></div>
+
+    <nav>
+    <a href="about.html" class="nav-btn">О НАС</a>
+    <a href="courses.html" class="nav-btn">ЗАНЯТИЯ</a>
+    <a href="index.html" class="nav-btn">ГЛАВНАЯ</a>
+    </nav>
+    <button class="mobile-menu-toggle" type="button"
+            aria-label="Открыть меню"
+            aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <button class="mobile-filter-toggle" type="button" aria-label="Открыть подбор программы" aria-expanded="false">
+        <span aria-hidden="true">⌕</span>
+    </button>
+</header>
+
+<main class="courses-page">
+
+<aside class="filters" id="courseFilters">
+    <div class="filters-head">
+        <h2>🔍 Подбор программы</h2>
+        <button class="filters-close" type="button" aria-label="Закрыть подбор программы">×</button>
+    </div>
+
+    <div class="filter-group">
+        <h3>📚 Программа</h3>
+        <button class="filter-btn" data-type="program" data-value="diagnostic">Онлайн-диагностика</button>
+        <button class="filter-btn" data-type="program" data-value="individual">Индивидуальный разбор</button>
+        <button class="filter-btn" data-type="program" data-value="school-ready">Готовность к школе</button>
+        <button class="filter-btn" data-type="program" data-value="neuro">НейроСказки</button>
+        <button class="filter-btn" data-type="program" data-value="intelligence">Эмоциональный и стратегический интеллект</button>
+        <button class="filter-btn" data-type="program" data-value="rhetoric">Риторика и Деньги</button>
+    </div>
+
+    <div class="filter-group">
+        <h3>👶 Возраст</h3>
+        <button class="filter-btn" data-type="age" data-value="6–7">6–7 лет</button>
+        <button class="filter-btn" data-type="age" data-value="8–11">8–11 лет</button>
+        <button class="filter-btn" data-type="age" data-value="12–14">12–14 лет</button>
+        <button class="filter-btn" data-type="age" data-value="15–17">15–17 лет</button>
+    </div>
+
+    <div class="filter-about">
+        Ребёнок получает знания и модели мышления, о которых редко говорят взрослые, и учится применять их в реальной жизни, в ситуациях.
+    </div>
+
+    <button class="reset-filters" type="button">🗑 Сбросить подбор</button>
+</aside>
+
+<div class="filters-backdrop" aria-hidden="true"></div>
+
+<div class="filters-backdrop" aria-hidden="true"></div>
+
+    <section class="courses-grid">
+
+    <div class="course-card" data-age="6–7" data-program="diagnostic" data-course="diagnostic">
+        <div class="badge">ХИТ</div>
+        <div class="course-photo"><img src="img/диагн.png" alt="Онлайн-диагностика"></div>
+        <h3>Онлайн-диагностика</h3>
+        <p class="course-desc">Узнайте сильные стороны и особенности Вашего ребёнка. Получите понятную картину того, что получается хорошо и на что стоит обратить внимание.</p>
+        <p class="price free">Бесплатно</p>
+        <a href="index.html#register" class="course-btn course-link" data-course="diagnostic">УЗНАТЬ</a>
+    </div>
+
+    <div class="course-card" data-age="6–7,8–11,12–14,15–17" data-program="individual" data-course="individual">
+        <div class="badge">ХИТ</div>
+        <div class="course-photo"><img src="img/инд разбор (1).png" alt="Индивидуальный разбор возможностей ребёнка"></div>
+        <h3>Индивидуальный разбор возможностей ребёнка</h3>
+        <p class="course-desc">40 минут индивидуальной работы с педагогом. После занятия Вы получите обратную связь о том, что заинтересовало ребёнка, что ему подходит и какие сильные стороны можно развивать.</p>
+        <p class="price">350 ₽ <span class="old-price">вместо 750 ₽</span></p>
+        <a href="index.html#register" class="course-btn course-link" data-course="individual">УЗНАТЬ</a>
+    </div>
+
+    <div class="course-card" data-age="6–7" data-program="school-ready" data-course="school-ready">
+        <div class="badge">ХИТ</div>
+        <div class="course-photo"><img src="img/СЭИ.png" alt="Социально-эмоциональная готовность к школе"></div>
+        <h3>Социально-эмоциональная готовность к школе</h3>
+        <p class="course-desc">8 онлайн-занятий в мини-группе с двумя педагогами, по 40 минут. Через игру и практику ребёнок учится справляться с ошибками, заданиями, общением и новыми школьными ситуациями.</p>
+        <p class="price">6 000 ₽</p>
+        <a href="index.html#register" class="course-btn course-link" data-course="school-ready">УЗНАТЬ</a>
+    </div>
+
+    <div class="course-card" data-age="6–7" data-program="neuro" data-course="neuro">
+        <div class="badge new">НОВОЕ</div>
+        <div class="course-photo"><img src="img/НейроСказки (1).png" alt="НейроСказки"></div>
+        <h3>НейроСказки</h3>
+        <p class="course-desc">Поддержка ребёнка перед школой и в начале обучения. 4 видеосказки помогают замечать происходящее, понимать чувства, справляться с тревогой и с интересом включаться в новое.</p>
+        <p class="price">1 400 ₽</p>
+        <a href="index.html#register" class="course-btn course-link" data-course="neuro">УЗНАТЬ</a>
+    </div>
+
+    <div class="course-card" data-age="8–11,12–14,15–17" data-program="intelligence" data-course="intelligence">
+        <div class="course-photo"><img src="img/интеллект.png" alt="Эмоциональный и стратегический интеллект"></div>
+        <h3>Эмоциональный и стратегический интеллект</h3>
+        <p class="course-desc">Онлайн, мини-группа, 1 час. Ребёнок учится понимать себя и других, учитывать эмоции, находить варианты решения и видеть последствия своих решений.</p>
+        <p class="price">800 ₽ <span class="price-note">разовое</span><br>2 800 ₽ <span class="price-note">4 занятия</span></p>
+        <a href="index.html#register" class="course-btn course-link" data-course="intelligence">УЗНАТЬ</a>
+    </div>
+
+    <div class="course-card" data-age="8–11,12–14,15–17" data-program="rhetoric" data-course="rhetoric">
+        <div class="course-photo"><img src="img/риторика и деньги.png" alt="Риторика и Деньги"></div>
+        <h3>Риторика и Деньги</h3>
+        <p class="course-desc">Онлайн, мини-группа, 1 час. Ребёнок учится говорить так, чтобы его слышали, распознавать манипуляции, понимать деньги и осознаннее принимать решения.</p>
+        <p class="price">800 ₽ <span class="price-note">разовое</span><br>2 800 ₽ <span class="price-note">4 занятия</span></p>
+        <a href="index.html#register" class="course-btn course-link" data-course="rhetoric">УЗНАТЬ</a>
+    </div>
+
+</section>
+
+</main>
+
+<button type="button" id="scrollTopBtn">↑</button>
+
+<footer id="contacts">
+
+    <div class="footer-left">
+
+            <img
+
+                src="img/Frame 23.png"
+
+                
+
+            >
+
+            <p>
+
+                Студия развития детей
+
+                «Искусство Разума»
+
+            </p>
+
+        </div>
+
+    <div class="footer-center">
+
+        <h3>Навигация</h3>
+
+        <a href="index.html">Главная</a>
+        <a href="courses.html">Курсы</a>
+        <a href="about.html">О нас</a>
+
+    </div>
+
+    <div class="footer-right">
+
+
+         <a
+            href="FAQ.html"
+            class="faq-btn"
+        >Политика обработки персональных данных</a>
+
+    </div>
+
+</footer>
+<!-- //////////// -->
+<script src="js/script.js" defer></script>
+<script src="js/site-content.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!-- Файл: index.html | Основные секции отмечены комментариями; стили находятся в css/style.css. -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Искусство Разума</title>
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo"><img src="img/Frame 23.png"></div>
+
+    <nav>
+    <a href="about.html" class="nav-btn">О НАС</a>
+    <a href="courses.html" class="nav-btn">ЗАНЯТИЯ</a>
+    <a href="index.html" class="nav-btn">ГЛАВНАЯ</a>
+    </nav>
+    <button class="mobile-menu-toggle" type="button"
+            aria-label="Открыть меню"
+            aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+</header>
+
+<section class="hero-slider">
+    
+    
+<button type="button" class="slider-btn prev">❮</button>
+<button type="button" class="slider-btn next">❯</button>
+    <div class="slides">
+
+        <div class="slide active">
+            <img src="img/1.jfif" alt="">
+            <div class="slide-content">
+                <h2>
+                    Хотите, чтобы ваш ребёнок спокойно справлялся со школой, общением и новыми ситуациями без тревоги и растерянности?
+                </h2>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="img/2.jfif" alt="">
+            <div class="slide-content">
+                <h2>
+                    На занятиях студии «Искусство Разума» через игру, 
+                    творчество и практические задания ребёнок учится понимать себя, 
+                    находить решения в непривычных ситуациях, общаться и действовать самостоятельно.
+                </h2>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="img/3.jfif" alt="">
+            <div class="slide-content">
+                <h2>
+                    У нас не кружок творчества.
+Игра, рисование и другие практики здесь становятся способом учиться думать, 
+понимать себя, общаться и находить решения в реальных жизненных ситуациях
+                </h2>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="img/4.jfif" alt="">
+            <div class="slide-content">
+                <h2>В результате занятий ребёнок:</h2>
+                <ul class="slide-list">
+                    <li>Легче адаптируется к школе и коллективу</li>
+                    <li>Лучше понимает неожиданные ситуации</li>
+                    <li>Получает навыки общения и самостоятельности</li>
+                    <li>Осваивает основы финансовой грамотности</li>
+                </ul>
+                
+
+    
+</div>
+            </div>
+        </div>
+
+    </div>
+
+    
+<div class="hero-buttons">
+
+        <a href="#register" class="hero-btn open-course" data-course="diagnostic">
+            Узнать, подойдёт ли моему ребёнку
+        </a>
+
+        <a href="courses.html" class="hero-btn">
+            Посмотреть программу занятий
+        </a>
+
+        <a href="#register" class="hero-btn open-course" data-course="diagnostic">
+            Записаться на диагностику
+        </a>
+
+    </div>
+</section>
+
+<div class="slider-dots">
+
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+
+</div>
+<section class="teacher-section pink-section">
+
+    <div class="teacher-info">
+
+        <div class="teacher-title">
+            <span class="blue"><h1>Как проходят занятия</h1></span>  
+        </div>
+    <br>
+        <div class="teacher-text">
+            <p>
+                Занятия проходят онлайн в живом формате: ребёнок общается 
+                с педагогом и другими детьми, выполняет практические задания, 
+                играет, рисует, обсуждает и пробует находить свои решения.
+            </p>
+        
+        </div>
+
+    </div>
+
+    <div class="teacher-photo">
+        <img src="img/фото 1.png">
+    </div>
+
+</section>
+
+
+
+<section class="teacher-section orange-section">
+
+    <div class="teacher-photo">
+        <img src="img/фото 2.png">
+    </div>
+
+    <div class="teacher-info">
+
+        <div class="teacher-title">
+            <span class="blue"><h1>Как развивается ребёнок на занятиях</h1></span>
+            
+        </div>
+        <br>
+        <p>
+            Ребёнок узнаёт то, о чём редко говорят взрослые: как устроено общение, 
+            почему люди ведут себя по-разному, как принимать решения, понимать деньги и замечать возможности. 
+            Разбирает новые понятия на понятных примерах, отрабатывает их в практических заданиях и учится 
+            применять полученные знания в реальных жизненных ситуациях.
+
+    </div>
+
+</section>
+
+
+
+
+<section class="bestsellers">
+
+    <h2 class="section-title">С чего начать</h2>
+
+    <div class="best-grid">
+
+        <div class="bestseller" data-course="diagnostic">
+            <div class="badge">ХИТ</div>
+            <div class="course-photo"><img src="img/диагн.png" alt="Онлайн-диагностика"></div>
+            <h3>Онлайн-диагностика</h3>
+            <p class="course-desc">Узнайте сильные стороны и особенности Вашего ребёнка.</p>
+            <p class="price free">Бесплатно</p>
+            <button type="button" class="course-btn open-course" data-course="diagnostic">УЗНАТЬ</button>
+        </div>
+
+        <div class="bestseller" data-course="individual">
+            <div class="badge">ХИТ</div>
+            <div class="course-photo"><img src="img/инд разбор (1).png" alt="Индивидуальный разбор возможностей ребёнка"></div>
+            <h3>Индивидуальный разбор возможностей ребёнка</h3>
+            <p class="course-desc">40 минут индивидуальной работы с педагогом и обратная связь о возможностях ребёнка.</p>
+            <p class="price">350 ₽ <span class="old-price">вместо 750 ₽</span></p>
+            <button type="button" class="course-btn open-course" data-course="individual">УЗНАТЬ</button>
+        </div>
+
+        <div class="bestseller" data-course="school-ready">
+            <div class="badge">ХИТ</div>
+            <div class="course-photo"><img src="img/СЭИ.png" alt="Социально-эмоциональная готовность к школе"></div>
+            <h3>Социально-эмоциональная готовность к школе</h3>
+            <p class="course-desc">8 онлайн-занятий в мини-группе с двумя педагогами, по 40 минут.</p>
+            <p class="price">6 000 ₽</p>
+            <button type="button" class="course-btn open-course" data-course="school-ready">УЗНАТЬ</button>
+        </div>
+
+        <div class="bestseller" data-course="neuro">
+            <div class="badge">ХИТ</div>
+            <div class="course-photo"><img src="img/НейроСказки (1).png" alt="НейроСказки"></div>
+            <h3>НейроСказки</h3>
+            <p class="course-desc">Поддержка ребёнка перед школой и в начале обучения. 4 сказки с творческой практикой.</p>
+            <p class="price">1 400 ₽</p>
+            <button type="button" class="course-btn open-course" data-course="neuro">УЗНАТЬ</button>
+        </div>
+
+        <div class="bestseller" data-course="intelligence">
+            <div class="course-photo"><img src="img/интеллект.png" alt="Эмоциональный и стратегический интеллект"></div>
+            <h3>Эмоциональный и стратегический интеллект</h3>
+            <p class="course-desc">Онлайн, мини-группа, 1 час. Разбираем реальные ситуации, решения, эмоции и возможности.</p>
+            <p class="price">800 ₽ <span class="price-note">разовое</span><br>2 800 ₽ <span class="price-note">4 занятия</span></p>
+            <button type="button" class="course-btn open-course" data-course="intelligence">УЗНАТЬ</button>
+        </div>
+
+        <div class="bestseller" data-course="rhetoric">
+            <div class="course-photo"><img src="img/риторика и деньги.png" alt="Риторика и Деньги"></div>
+            <h3>Риторика и Деньги</h3>
+            <p class="course-desc">Онлайн, мини-группа, 1 час. Общение, аргументация, манипуляции, деньги и осознанный выбор.</p>
+            <p class="price">800 ₽ <span class="price-note">разовое</span><br>2 800 ₽ <span class="price-note">4 занятия</span></p>
+            <button type="button" class="course-btn open-course" data-course="rhetoric">УЗНАТЬ</button>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ///////////////////////////////////////////////////////// -->
+<section class="registration" id="register">
+
+
+    <h2>Записаться на занятие</h2>
+
+    <p class="form-subtitle">
+        Оставьте заявку, и мы свяжемся с вами для подбора подходящей программы
+    </p>
+
+    <form class="register-form" id="registerForm" action="#" method="post">
+
+        <div class="form-row">
+
+            <div class="input-group">
+                <label for="parentName">Имя родителя</label>
+                <input id="parentName" name="parent_name" type="text" autocomplete="name" required>
+            </div>
+
+            <div class="input-group">
+                <label for="phone">Телефон</label>
+                <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" value="+7 (" placeholder="+7 (___) ___-__-__" maxlength="18" required>
+            </div>
+
+        </div>
+
+        <div class="form-row">
+
+            <div class="input-group">
+                <label for="childName">Имя ребёнка</label>
+                <input id="childName" name="child_name" type="text" required>
+            </div>
+
+            <div class="input-group">
+                <label for="childBirthDate">Дата рождения ребёнка</label>
+                <input id="childBirthDate" name="child_birth_date" type="date" required>
+            </div>
+
+        </div>
+
+        <div class="input-group">
+
+            <label for="courseSelect">Интересующее направление</label>
+
+            <select id="courseSelect" name="course" required>
+                <option value="" selected disabled>Выберите направление</option>
+                <option value="diagnostic">Онлайн-диагностика</option>
+                <option value="individual">Индивидуальный разбор возможностей ребёнка</option>
+                <option value="school-ready">Социально-эмоциональная готовность к школе (6–8 лет)</option>
+                <option value="neuro">НейроСказки — поддержка ребёнка перед школой и в начале обучения</option>
+                <option value="intelligence">Эмоциональный и стратегический интеллект (8–16 лет)</option>
+                <option value="rhetoric">Риторика и Деньги (10–17 лет)</option>
+            </select>
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Дополнительная информация</label>
+
+            <textarea
+                id="additionalInfo"
+                name="additional_info"
+                rows="5"
+                placeholder="Расскажите немного о ребёнке..."
+            ></textarea>
+
+        </div>
+
+        <div class="checkbox">
+
+            <input
+                type="checkbox"
+                id="agree"
+                name="personal_data_consent"
+                value="1"
+                required
+            >
+
+            <label for="agree">
+                <a href="FAQ.html">Я согласен(а) на обработку персональных данных</a>
+            </label>
+
+        </div>
+
+        <button type="submit" class="submit-btn">
+            Отправить заявку
+        </button>
+
+    </form>
+
+</section>
+<button type="button" id="scrollTopBtn">↑</button>
+<footer id="contacts">
+
+    <div class="footer-left">
+
+            <img
+
+                src="img/Frame 23.png"
+
+                
+
+            >
+
+            <p>
+
+                Студия развития детей
+
+                «Искусство Разума»
+
+            </p>
+
+        </div>
+
+    <div class="footer-center">
+
+        <h3>Навигация</h3>
+
+        <a href="index.html">Главная</a>
+        <a href="courses.html">Курсы</a>
+        <a href="about.html">О нас</a>
+
+    </div>
+
+    <div class="footer-right">
+
+
+         <a
+            href="FAQ.html"
+            class="faq-btn"
+        >Политика обработки персональных данных</a>
+
+    </div>
+
+</footer>
+
+<!-- ///////////////////////////////////////////////////////// -->
+ <!-- skript form -->
+<!-- ///// -->
+<script src="js/script.js" defer></script>
+<script src="js/site-content.js" defer></script>
+<script src="js/cloudflare-api.js"></script>
+</body>
+</html>

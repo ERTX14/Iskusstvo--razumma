@@ -1,0 +1,3938 @@
+/* ---------- 0. ШРИФТЫ И ПЕРЕМЕННЫЕ ---------- */
+
+@font-face {
+    font-family: "SchoolTitle";
+  src: url("../fonts/TheBoldFontPro(CyrLat)-Bold.ttf") format("truetype"),
+         url("../fonts/TheBoldFontPro(CyrLat)-Bold.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SchoolText";
+    src: url("../fonts/TheBoldFontPro(CyrLat)-Bold.ttf") format("truetype"),
+         url("../fonts/TheBoldFontPro(CyrLat)-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* @font-face {
+    font-family: "ArtMind";
+    src: url("../fonts/ArtMind.woff2") format("woff2"),
+         url("../fonts/ArtMind.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+} */
+
+:root{
+    --green:#1b2d1c;
+    --beige:#ddddc6;
+    --gold:#d9b215;
+    --light:#f7f6f2;
+    --radius:24px;
+    --shadow: 0 12px 35px rgba(0,0,0,.08);
+    --transition:.35s ease;
+}
+
+/* ---------- 1. ГЛОБАЛЬНЫЕ НАСТРОЙКИ ---------- */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+    overflow-x:hidden;
+}
+
+body{
+    margin:0;
+    background: var(--light);
+    color:#222;
+    /* Единый базовый шрифт для всего документа до переопределения */
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Переопределение базовых тегов после body */
+h1,
+h2,
+h3,
+h4,
+p,
+a,
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+    line-height: inherit;
+}
+
+/* Специфичные семейства шрифтов */
+h1,
+/* h2, */
+.hero-title,
+.logo {
+    font-family: "SchoolTitle";
+    font-weight: 400;
+    line-height: 1.05;
+}
+
+h2,
+h3,
+h4,
+p,
+a,
+button,
+input,
+.select {
+    font-family: "SchoolText";
+}
+
+/* ---------- 2. ХЕДЕР И ОБЩИЕ ЭЛЕМЕНТЫ ---------- */
+
+header{
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 30px);
+    max-width: 1200px;
+    height: 90px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(247, 247, 247, 0.555);
+    border-radius: 30px;
+}
+
+.logo img{
+    height:55px;
+    display: block;
+}
+
+nav a{
+    text-decoration:none;
+    margin-left:20px;
+    color:#FF4B6E;
+    font-weight:bold;
+    transition: color var(--transition);
+}
+.nav-btn{
+     overflow:hidden;
+    position: relative;
+    padding: 10px 20px;
+    border-radius: 30px;
+    color: #FF4B6E;
+    transition: all var(--transition);
+    text-decoration: none;
+}
+
+.nav-btn::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:0;
+    height:0;
+    background:#FF4B6E;
+    border-radius:40px;
+    transform:translate(-50%,-50%);
+    transition:width var(--transition), height var(--transition);
+    z-index:-1;
+}
+
+.nav-btn:hover::before{
+    width:110%;
+    height:110%;
+}
+
+.nav-btn:hover{
+    color:#2D7A8B;
+}
+
+footer{
+    background:#1f1f1f;
+    color:white;
+    margin-top:80px;
+    padding:50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+.footer-left img{
+    height:60px;
+    margin-bottom:15px;
+}
+
+.footer-center,
+.footer-right{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.footer-center a{
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.footer-center a:hover{
+    color:#FF4B6E;
+}
+
+.faq-btn{
+    margin-top:15px;
+    border:none;
+    padding:12px 25px;
+    border-radius:15px;
+    background:rgb(255, 255, 255);
+    cursor:pointer;
+    font-weight:700;
+    transition: var(--transition);
+}
+
+/* Кнопка скролла вверх */
+#scrollTopBtn{
+    position:fixed;
+    bottom:30px;
+    left:50%;
+    transform:translateX(-50%);
+    width:60px;
+    height:60px;
+    border:none;
+    border-radius:50%;
+    background:#FF4B6E;
+    color:white;
+    font-size:28px;
+    cursor:pointer;
+    z-index:9999;
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+    box-shadow: 0 8px 20px rgba(0,0,0,.25);
+}
+
+#scrollTopBtn.show{
+    opacity:1;
+    visibility:visible;
+}
+
+#scrollTopBtn:hover{
+    transform: translateX(-50%) translateY(-5px);
+    background:#FF4B6E;
+}
+
+/* ---------- 3. ГЛАВНАЯ СТРАНИЦА (HERO) ---------- */
+
+.course{
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,.95),
+        rgba(255,255,255,.75)
+    );
+    backdrop-filter:blur(10px);
+}
+
+.slide::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+    linear-gradient(
+        rgba(0,0,0,.45),
+        rgba(0,0,0,.35)
+    );
+    z-index:1;
+}
+
+.hero-slider{
+    position:relative;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+}
+
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    opacity:0;
+    transition:opacity 1s ease-in-out;
+}
+
+.slide.active{
+    opacity:1;
+}
+
+.slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+.slide-list{
+    color:#fff;
+    margin-top:20px;
+    text-align:left;
+    padding-left:25px;
+    font-size:22px;
+}
+
+.slide-list li{
+    margin-bottom:10px;
+}
+
+.slide-content{
+    position:absolute;
+    z-index:2;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    max-width:1100px;
+    text-align:center;
+    padding:40px;
+    backdrop-filter:blur(10px);
+    background:rgba(255, 255, 255, 0.08);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:30px;
+}
+
+.slide.active .slide-content{
+    animation:slideText .8s ease forwards;
+}
+
+@keyframes slideText{
+    from{
+        opacity:0;
+        transform: translate(-50%,-40%);
+    }
+    to{
+        opacity:1;
+        transform: translate(-50%,-50%);
+    }
+}
+
+.slide-content h2{
+    color:white;
+    font-size:30px;
+    line-height:1.15;
+    max-width:800px;
+    margin:auto;
+    text-shadow: 0 4px 20px rgba(227, 227, 227, 0.5);
+}
+
+.slider-dots{
+    position:absolute;
+    bottom:40px;
+    left:50%;
+    transform:translateX(-50%);
+   z-index: 8; /* Меньше, чем у кнопок */
+}
+
+.dot{
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:white;
+    opacity:.4;
+    cursor:pointer;
+    transition: all var(--transition);
+}
+
+.dot.active{
+    opacity:1;
+    transform:scale(1.3);
+    background:#FF4B6E;
+}
+
+.slider-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:70px;
+    height:70px;
+    border:none;
+    border-radius:50%;
+    background:rgba(250, 250, 250, 0.2);
+    color:white;
+    font-size:30px;
+    cursor:pointer;
+    z-index:100;
+    transition: all var(--transition);
+}
+
+.prev{ left:20px; }
+.next{ right:20px; }
+
+.slider-btn:hover{
+    transform:scale(1.12) translateY(-50%);
+    background:white;
+    color:#222;
+}
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    position:absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Центрируем горизонтально */
+    bottom: 18%; /* <--- ВНИМАНИЕ НА ЭТО ЗНАЧЕНИЕ! */
+    z-index: 9; /* Над точками навигации (.dot) */
+}
+
+.hero-btn{
+    background:#FF4B6E;
+    color:white;
+    text-decoration:none;
+    padding:16px 25px;
+    border-radius:18px;
+    font-weight:700;
+    transition:all var(--transition);
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.hero-btn:hover{
+    background:#FF4B6E;
+    transform:translateY(-3px);
+}
+
+/* ---------- 4. РАЗДЕЛ СПЕЦИАЛИСТОВ ---------- */
+
+.teacher-section{
+    width:100%;
+    min-height:600px;
+    display:flex;
+    align-items:flex-end;      /* Фото прижимаются вниз */
+    justify-content:space-between;
+    padding:0;
+    overflow:hidden;
+}
+
+.teacher-info{
+    width:55%;
+    margin:40px;
+    background:#fff;
+    border-radius:35px;
+    padding:35px;
+    z-index:2;
+}
+
+
+.teacher-photo{
+    width:45%;
+    height:600px;
+    display:flex;
+    align-items:flex-end;      /* Фото стоит на "полу" */
+}
+
+.teacher-photo img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:bottom;
+    display:block;
+}
+
+.teacher-title .blue{
+    display:block;
+    font-size:58px;
+    color:#2D7A8B;
+    font-weight:900;
+}
+
+.teacher-title .red{
+    display:block;
+    font-size:46px;
+    color:#FF4B6E;
+    font-weight:900;
+}
+
+.teacher-title .sub{
+    display:block;
+    font-size:22px;
+    color:#FF4B6E;
+    margin-top:10px;
+}
+
+.pink-section{ background:#FF4B6E; }
+.orange-section{ background:#FF7258; }
+
+.teacher-info h2{
+    font-size:48px;
+    margin-bottom:30px;
+    color:#FF4B6E;
+}
+
+.teacher-text{
+    display:flex;
+    gap:40px;
+}
+
+.teacher-text p{
+    flex:1;
+}
+
+/* ---------- 5. ЛУЧШИЕ ПРОДАЖИ ---------- */
+
+.bestsellers{
+    background:#2D7A8B;
+    padding:100px 0;
+}
+
+.section-title{
+    text-align:center;
+    font-size:48px;
+    font-weight:700;
+    margin-bottom:50px;
+    color:#ffffff;
+}
+
+.best-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 280px));
+    justify-content:center;
+    gap:25px;
+}
+
+.bestseller{
+    display:flex;
+    flex-direction:column;
+    min-height:430px;
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 5px 11px rgba(0,0,0,.08);
+    position:relative;
+    transition:transform var(--transition);
+}
+
+.bestseller:hover{
+    transform:translateY(-8px);
+}
+
+.badge{
+    position:absolute;
+    top:10px;
+    left:10px;
+    background:#FF4B6E;
+    color:white;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:700;
+    z-index:10;
+}
+
+.new{
+    background:#FF7258;
+}
+
+.course-photo{
+    height:180px;
+    background:#efefef;
+    overflow:hidden;
+}
+
+.course-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.bestseller h3{
+    padding:15px 15px 5px;
+    font-size:22px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.course-desc{
+    flex: 1;
+    padding:0 15px;
+    color:#666666;
+    line-height:1.5;
+    overflow-wrap:break-word;
+}
+
+.price{
+    padding:10px 15px;
+    font-size:28px;
+    font-weight:bold;
+    color:#ff4f87;
+}
+
+.free{
+    color:#17a34a;
+}
+
+.course-btn{
+    margin-top:auto;
+    width:calc(100% - 20px);
+    height:50px;
+    margin:15px 10px;
+    border:none;
+    border-radius:15px;
+    background:#FF4B6E;
+    color:white;
+    text-decoration:none;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:700;
+    transition:background var(--transition), transform var(--transition);
+    cursor:pointer;
+}
+
+.course-btn:hover{
+    background:#FF4B6E;
+    transform:translateY(-3px);
+}
+
+/* ---------- 6. РЕГИСТРАЦИЯ ---------- */
+
+.registration{
+    max-width:1000px;
+    margin:120px auto;
+    background:white;
+    padding:50px;
+    border-radius:35px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.registration h2{
+    text-align:center;
+    font-size:42px;
+    margin-bottom:10px;
+    color:#2D7A8B;
+}
+
+.form-subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:40px;
+}
+
+.register-form{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.input-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.input-group label{
+    margin-bottom:8px;
+    font-weight:600;
+    color:#444;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea{
+    padding:15px;
+    border:2px solid #ececec;
+    border-radius:15px;
+    font-size:16px;
+    transition:border-color var(--transition);
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus{
+    outline:none;
+    border-color:#FF4B6E;
+}
+
+.checkbox{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.submit-btn{
+    height:60px;
+    border:none;
+    border-radius:15px;
+    background:#FF4B6E;
+    color:white;
+    font-size:18px;
+    font-weight:700;
+    cursor:pointer;
+    transition:all var(--transition);
+}
+
+.submit-btn:hover{
+    background:#FF4B6E;
+    transform:translateY(-3px);
+}
+
+/* ---------- 7. СТРАНИЦА "О НАС" ---------- */
+
+/* =========================================================
+   ABOUT — ОСНОВНОЙ ФОН СТРАНИЦЫ
+========================================================= */
+
+body {
+    background: #2D7A8B;
+}
+
+
+/* =========================================================
+   ABOUT — ГЛАВНЫЙ ЭКРАН
+========================================================= */
+
+.about-hero {
+    position: relative;
+
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 120px 20px 60px;
+
+    box-sizing: border-box;
+
+    background-image:
+        linear-gradient(
+            rgba(20, 50, 60, 0.45),
+            rgba(20, 50, 60, 0.60)
+        ),
+        url("../img/about-main.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* =========================================================
+   СТЕКЛЯННЫЙ БЛОК НА ГЛАВНОМ ЭКРАНЕ
+========================================================= */
+
+.about-hero__glass {
+    width: min(850px, 90%);
+
+    padding: 50px 60px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    border: 1px solid rgba(255, 255, 255, 0.40);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ГЛАВНЫЙ ЗАГОЛОВОК */
+
+.about-hero__glass h1 {
+    margin: 0 0 25px;
+
+    font-family: "SchoolTitle", sans-serif;
+
+    font-size: clamp(50px, 7vw, 95px);
+
+    line-height: 1;
+
+    color: #FF4B6E;
+}
+
+
+/* ОБЫЧНЫЙ ТЕКСТ */
+
+.about-hero__glass p {
+    margin: 0 auto;
+
+    max-width: 750px;
+
+    font-family: "SchoolText", sans-serif;
+
+    font-size: clamp(18px, 2vw, 27px);
+
+    line-height: 1.5;
+
+    color: #ffffff;
+}
+
+
+/* =====================================================
+   БЛОК ДИПЛОМОВ
+===================================================== */
+
+.diploma-section {
+    width: 100%;
+
+    padding: 80px 8%;
+
+    box-sizing: border-box;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+
+    background: #2D7A8B;
+}
+
+
+/* КАРТОЧКИ */
+
+.diploma-card {
+    min-height: 230px;
+
+    padding: 35px 25px;
+
+    border: 1px solid rgba(255,255,255,0.45);
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.14);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    cursor: pointer;
+
+    text-align: center;
+
+    transition: 0.3s ease;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.12);
+}
+
+
+.diploma-card:hover {
+    transform: translateY(-8px);
+
+    background: rgba(255,255,255,0.22);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.2);
+}
+
+
+.diploma-card h3 {
+    margin: 0 0 18px;
+
+    font-family: "SchoolTitle", sans-serif;
+
+    font-size: 34px;
+
+    line-height: 1.1;
+
+    color: #FF4B6E;
+}
+
+
+.diploma-card p {
+    margin: 0;
+
+    font-family: "SchoolText", sans-serif;
+
+    font-size: 18px;
+
+    line-height: 1.5;
+
+    color: white;
+}
+
+
+/* =====================================================
+   ВСПЛЫВАЮЩЕЕ ОКНО
+===================================================== */
+
+.diploma-popup {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 10000;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    background: rgba(0,0,0,0.75);
+}
+
+
+/* КОГДА ОКНО ОТКРЫТО */
+
+.diploma-popup.show {
+    display: flex;
+}
+
+
+/* БЕЛОЕ ОКНО */
+
+.diploma-popup-box {
+
+    position: relative;
+
+    width: min(1000px, 95vw);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 45px;
+
+    box-sizing: border-box;
+
+    border-radius: 30px;
+
+    background: white;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,0.4);
+}
+
+
+/* ЗАГОЛОВОК */
+
+.diploma-popup-box h2 {
+
+    margin: 0 60px 35px 0;
+
+    font-family: "SchoolTitle", sans-serif;
+
+    font-size: 45px;
+
+    line-height: 1.1;
+
+    color: #FF4B6E;
+}
+
+
+/* КРЕСТИК */
+
+.diploma-popup-close {
+
+    position: absolute;
+
+    top: 15px;
+
+    right: 15px;
+
+    width: 50px;
+
+    height: 50px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #FF4B6E;
+
+    color: white;
+
+    font-size: 35px;
+
+    line-height: 45px;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+
+.diploma-popup-close:hover {
+
+    transform: rotate(90deg);
+
+    background: #e83d5f;
+}
+
+
+/* =====================================================
+   ФОТОГРАФИИ
+===================================================== */
+
+.diploma-photos {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+.diploma-photos img {
+
+    width: 100%;
+
+    height: 300px;
+
+    display: block;
+
+    object-fit: contain;
+
+    padding: 10px;
+
+    box-sizing: border-box;
+
+    border-radius: 18px;
+
+    background: #f3f3f3;
+}
+
+
+/* =====================================================
+   ТЕЛЕФОН
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .diploma-section {
+
+        grid-template-columns: 1fr;
+
+        padding: 60px 20px;
+
+    }
+
+
+    .diploma-card {
+
+        min-height: 180px;
+
+    }
+
+
+    .diploma-popup-box {
+
+        padding: 35px 20px 25px;
+
+    }
+
+
+    .diploma-popup-box h2 {
+
+        font-size: 35px;
+
+    }
+
+
+    .diploma-photos {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .diploma-photos img {
+
+        height: 350px;
+
+    }
+
+}
+.stats {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 25px;
+
+    padding: 80px 8%;
+
+    box-sizing: border-box;
+
+    background: #2D7A8B;
+}
+
+
+.stat {
+    min-height: 210px;
+
+    padding: 30px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+    background: rgba(255, 255, 255, 0.15);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+
+.stat h2 {
+    margin: 0 0 15px;
+
+    font-family: "SchoolTitle", sans-serif;
+
+    font-size: clamp(48px, 5vw, 75px);
+
+    line-height: 1;
+
+    color: #FF4B6E;
+}
+
+
+.stat p {
+    margin: 0;
+
+    font-family: "SchoolText", sans-serif;
+
+    font-size: 18px;
+
+    line-height: 1.5;
+
+    color: #ffffff;
+}
+
+
+
+/* ---------- 8. СТРАНИЦА КУРСОВ ---------- */
+
+.courses-page{
+    display:flex;
+    gap:40px;
+    padding:40px;
+    margin-top: 120px;
+}
+
+.filters{
+    width: 330px;
+    background:rgb(255, 255, 255);
+    padding:25px;
+    border-radius:25px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    height:fit-content;
+}
+
+.filters h2{
+    text-align:center;
+
+    color:#FF4B6E;
+
+    margin-bottom:30px;
+
+    font-size:30px;
+}
+
+.filter-group h3{
+
+    margin-bottom:15px;
+
+    color:#444;
+
+    font-size:18px;
+
+}
+
+.filter-group{
+
+    margin-bottom:30px;
+
+    padding-bottom:25px;
+
+    border-bottom:1px solid #ececec;
+
+}
+.filter-btn {
+
+    width:100%;
+
+    padding:14px 18px;
+
+    margin-bottom:10px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#f3f3f3;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    text-align:left;
+
+    font-size:15px;
+
+}
+    
+   
+
+
+.filter-btn:hover{
+
+    background:#ffe6ef;
+
+    color:#ff4f87;
+
+    transform:translateX(6px);
+
+}
+
+.filter-btn.active{
+    background:#FF4B6E;
+    color:white;
+    box-shadow:0 5px 15px rgba(255,79,135,.4);
+    transform:scale(1.03);
+}
+.reset-filters{
+
+    width:100%;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#1b2d1c;
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.reset-filters:hover{
+
+    background:#29472a;
+
+    transform:translateY(-2px);
+
+}
+
+.courses-grid{
+    flex:1;
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 280px));
+    justify-content:center;
+    align-content:start;
+    gap:25px;
+}
+
+.course-card{
+    display:flex;
+    flex-direction:column;
+    min-height:420px;
+    background:rgb(255, 255, 255);
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    position:relative;
+    transition:transform var(--transition);
+}
+
+.course-card:hover{
+    transform:translateY(-8px);
+}
+
+.course-card .badge{
+    position:absolute;
+    top:15px;
+    left:15px;
+    background:#FF4B6E;
+    color:white;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:12px;
+    z-index:10;
+}
+
+.course-photo{
+    height:180px;
+    background:#efefef;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.course-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.course-card h3{
+    padding:15px 15px 5px;
+    font-size:22px;
+    overflow-wrap:break-word;
+    word-break:break-word;
+}
+
+.course-card p{
+    margin-bottom:15px;
+    padding:0 15px;
+    color:#FF4B6E;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.course-desc{
+    padding:0 15px;
+    min-height:80px;
+    overflow-wrap:break-word;
+    flex-grow: 1;
+}
+
+.course-card button,
+.course-card .course-btn{
+    width:calc(100% - 20px);
+    height:50px;
+    margin:15px 10px;
+    border:none;
+    border-radius:15px;
+    background:#FF4B6E;
+    color:white;
+    text-decoration:none;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:700;
+    cursor:pointer;
+    transition:background var(--transition), transform var(--transition);
+}
+
+.course-card button:hover,
+.course-card .course-btn:hover{
+    background:#FF4B6E;
+    transform:translateY(-3px);
+}
+.courses-page{
+
+    display:flex;
+
+    gap:40px;
+
+    padding:40px;
+
+    margin-top:120px;
+
+    align-items:flex-start;
+
+}
+
+
+/* ---------- 9. АДАПТИВ ---------- */
+
+@media(max-width:1200px){
+    .about-frame__top{
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .about-frame__subtitle{
+        text-align: center;
+    }
+}
+
+@media(max-width:900px){
+    .about-frame{
+        padding-top:170px;
+    }
+    .about-frame__title{
+        font-size:42px;
+    }
+    .stats{
+        grid-template-columns: repeat(2, 1fr);
+        padding:40px;
+    }
+    .about-hero{
+        padding: 40px 20px;
+    }
+    .about-hero h1{
+        font-size: 60px;
+    }
+    .courses-page{
+        flex-direction: column;
+    }
+    .filters{
+        width: 100%;
+    }
+}
+
+
+/* adaptiv */
+/* Адаптивность */
+@media screen and (max-width: 768px) {
+    /* Для телефонов и маленьких планшетов (портретная ориентация) */
+
+    .slide-content h1 { /* Уменьшаем заголовок */
+        font-size: 24px !important; /* Важно перебить inline-стили из HTML */
+        line-height: 1.5;
+    }
+
+    .slide-content ul li { /* Если есть список */
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+
+    .slide-content {
+        top: calc(50% + 9vh); /* Сдвигаем текст ниже по центру */
+        padding: 20px; /* Убираем лишние отступы внутри овала */
+    }
+
+    .hero-buttons-new,
+    .slider-dots {
+        bottom: 16%; /* Поднимаем всё вверх, т.к. экран стал выше */
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    /* Для средних планшетов (альбомная/портретная ориентация) */
+
+    .slide-content h1 {
+        font-size: 36px;
+    }
+
+    .slide-content {
+        max-width: none; /* Растягиваем текст на всю ширину */
+        width: 80%;
+        left: 10%;
+    }
+
+    .hero-buttons-new a {
+        padding: 14px 28px; /* Делаем кнопки чуть уже для удобства */
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1200px) {
+    /* Для больших планшетов и ноутбуков с маленьким разрешением */
+
+    .slide-content h1 {
+        font-size: 48px;
+    }
+
+    .hero-buttons-new,
+    .slider-dots {
+        bottom: auto; /* Возвращаемся к фиксированным значениям */
+        transform: none;
+    }
+
+    .hero-buttons-new {
+        position: relative; /* Вытаскиваем их из абсолютного позиционирования */
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 40px; /* Отступ от текста */
+    }
+
+    .slider-dots {
+        margin-top: 20px; /* Переносим точки вниз */
+    }
+}
+
+
+
+
+.course-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.course-modal.active{
+    display:flex;
+}
+
+.modal-content{
+    width:900px;
+    max-width:95%;
+    background:#fff;
+    border-radius:35px;
+    overflow:hidden;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+}
+
+.modal-left{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:550px;
+}
+
+.modal-left img{
+    width:90%;
+    max-height:450px;
+    object-fit:contain;
+}
+
+.modal-right{
+    padding:40px;
+    border-left:8px solid #ff4f87;
+    display:flex;
+    flex-direction:column;
+}
+
+.modal-right h2{
+    font-size:42px;
+    margin-bottom:20px;
+}
+
+.modal-right h3{
+    margin-bottom:15px;
+}
+
+.modal-right ul{
+    margin-left:20px;
+    line-height:2;
+    flex:1;
+}
+
+.modal-btn{
+    width:280px;
+    height:60px;
+    margin-top:30px;
+    align-self:flex-end;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#ff4f87;
+    color:#fff;
+    text-decoration:none;
+    border-radius:30px;
+    font-weight:700;
+}
+
+.modal-btn:hover{
+    background:#ff2d74;
+}
+
+.close-modal{
+    position:absolute;
+    right:30px;
+    top:20px;
+    font-size:40px;
+    cursor:pointer;
+    z-index:20;
+}
+
+.modal-arrow{
+    position:absolute;
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:50%;
+    background:#ff4f87;
+    color:#fff;
+    cursor:pointer;
+}
+
+.modal-arrow.prev{
+    left:20px;
+}
+
+.modal-arrow.next{
+    right:20px;
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   Десктопные стили выше не меняются.
+   Ниже — только адаптация существующей версии.
+   ========================================================= */
+
+html,
+body {
+    max-width: 100%;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+img,
+video {
+    max-width: 100%;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================
+   TABLETS / SMALL LAPTOPS
+   ========================= */
+
+@media (max-width: 1024px) {
+
+    header {
+        width: calc(100% - 28px);
+        padding: 14px 22px;
+    }
+
+    .courses-page {
+        gap: 25px;
+        padding: 35px 25px;
+    }
+
+    .filters {
+        width: 270px;
+        flex: 0 0 270px;
+    }
+
+    .courses-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+    .best-grid {
+        grid-template-columns: repeat(2, minmax(260px, 300px));
+    }
+
+    .teacher-info {
+        width: 55%;
+        margin: 30px;
+        padding: 30px;
+    }
+
+    .teacher-photo {
+        width: 45%;
+        height: 560px;
+    }
+
+    .teacher-title .blue {
+        font-size: clamp(40px, 5vw, 58px);
+    }
+
+    .teacher-title .red {
+        font-size: clamp(32px, 4vw, 46px);
+    }
+
+    .teacher-text {
+        gap: 24px;
+    }
+
+    .registration {
+        width: calc(100% - 50px);
+        margin: 80px auto;
+        padding: 40px;
+    }
+
+    .stats {
+        padding: 55px 35px;
+    }
+
+    .about-frame__top {
+        width: calc(100% - 50px);
+    }
+}
+
+
+/* =========================
+   MOBILE NAV + TABLET PORTRAIT
+   ========================= */
+
+.mobile-menu-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    /* ---------- GLOBAL ---------- */
+
+    body {
+        min-width: 0;
+    }
+
+    /* ---------- HEADER ---------- */
+
+    header {
+        top: 10px;
+        width: calc(100% - 20px);
+        height: 68px;
+        padding: 10px 16px;
+        border-radius: 22px;
+    }
+
+    .logo img {
+        height: 44px;
+        max-width: 170px;
+        object-fit: contain;
+    }
+
+    .mobile-menu-toggle {
+        width: 46px;
+        height: 46px;
+        padding: 10px;
+        border: 0;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, .8);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+        flex: 0 0 46px;
+        z-index: 1101;
+    }
+
+    .mobile-menu-toggle span {
+        display: block;
+        width: 23px;
+        height: 2px;
+        border-radius: 3px;
+        background: #FF4B6E;
+        transition: transform .3s ease, opacity .2s ease;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    header nav {
+        position: fixed;
+        top: 76px;
+        right: 0;
+        width: min(280px, calc(100vw - 30px));
+        padding: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        background: rgba(247, 247, 247, .97);
+        border-radius: 22px;
+        box-shadow: 0 18px 45px rgba(0,0,0,.16);
+        transform: translateY(-12px) scale(.98);
+        transform-origin: top right;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
+    }
+
+    header nav.mobile-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0) scale(1);
+    }
+
+    header nav a,
+    .nav-btn {
+        margin-left: 0;
+        min-height: 48px;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero-slider {
+        height: 100svh;
+        min-height: 680px;
+        max-height: 900px;
+    }
+
+    .slide-content {
+        top: 44%;
+        width: calc(100% - 36px);
+        max-width: none;
+        padding: 22px 18px;
+        border-radius: 23px;
+    }
+
+    .slide-content h2 {
+        font-size: clamp(21px, 5.2vw, 30px);
+        line-height: 1.25;
+    }
+
+    .slide-list {
+        margin-top: 14px;
+        padding-left: 22px;
+        font-size: clamp(16px, 4vw, 22px);
+        text-align: left;
+    }
+
+    .slide-list li {
+        margin-bottom: 7px;
+    }
+
+    .slider-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+        top: 43%;
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+
+    .hero-buttons {
+        width: calc(100% - 32px);
+        bottom: 8%;
+        gap: 9px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-btn {
+        min-height: 48px;
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 15px;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .slider-dots {
+        bottom: 2.5%;
+        display: flex;
+        gap: 9px;
+    }
+
+    .dot {
+        width: 11px;
+        height: 11px;
+        flex: 0 0 11px;
+    }
+
+    /* ---------- TEACHERS ---------- */
+
+    .teacher-section {
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-end;
+    }
+
+    .teacher-section.orange-section {
+        flex-direction: column;
+    }
+
+    .teacher-info {
+        order: 1;
+        width: calc(100% - 28px);
+        margin: 20px 14px 0;
+        padding: 24px 20px;
+        border-radius: 25px;
+    }
+
+    .teacher-photo {
+        order: 2;
+        width: 100%;
+        height: auto;
+        min-height: 330px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .orange-section .teacher-photo {
+        order: 2;
+    }
+
+    .orange-section .teacher-info {
+        order: 1;
+    }
+
+    .teacher-photo img {
+        width: 100%;
+        height: auto;
+        max-height: 430px;
+        object-fit: contain;
+        object-position: bottom center;
+    }
+
+    .teacher-title .blue {
+        font-size: clamp(38px, 11vw, 58px);
+        line-height: 1;
+    }
+
+    .teacher-title .red {
+        font-size: clamp(30px, 8.5vw, 46px);
+        line-height: 1.05;
+        overflow-wrap: anywhere;
+    }
+
+    .teacher-title .sub {
+        font-size: 17px;
+        line-height: 1.45;
+    }
+
+    .teacher-text {
+        display: block;
+    }
+
+    .teacher-text p,
+    .teacher-info > p {
+        font-size: 16px;
+        line-height: 1.55;
+        margin-bottom: 15px;
+    }
+
+    /* ---------- BESTSELLERS ---------- */
+
+    .bestsellers {
+        padding: 65px 16px;
+    }
+
+    .section-title {
+        font-size: clamp(34px, 9vw, 48px);
+        margin-bottom: 30px;
+    }
+
+    .best-grid {
+        grid-template-columns: 1fr;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .bestseller {
+        width: 100%;
+        min-height: 0;
+    }
+
+    .bestseller h3 {
+        font-size: 21px;
+    }
+
+    .course-photo {
+        height: 190px;
+    }
+
+    .course-desc {
+        font-size: 15px;
+    }
+
+    .price {
+        font-size: 24px;
+    }
+
+    .course-btn {
+        min-height: 50px;
+    }
+
+    /* ---------- REGISTRATION ---------- */
+
+    .registration {
+        width: calc(100% - 28px);
+        margin: 65px auto;
+        padding: 28px 18px;
+        border-radius: 25px;
+    }
+
+    .registration h2 {
+        font-size: clamp(30px, 8vw, 42px);
+        line-height: 1.1;
+    }
+
+    .form-subtitle {
+        font-size: 15px;
+        line-height: 1.5;
+        margin-bottom: 28px;
+    }
+
+    .register-form {
+        gap: 16px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .input-group input,
+    .input-group select,
+    .input-group textarea {
+        width: 100%;
+        min-height: 48px;
+        font-size: 16px;
+    }
+
+    .input-group textarea {
+        min-height: 130px;
+    }
+
+    .checkbox {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .checkbox input {
+        width: 20px;
+        height: 20px;
+        flex: 0 0 20px;
+        margin-top: 2px;
+    }
+
+    .checkbox label {
+        font-size: 14px;
+        line-height: 1.45;
+    }
+
+    .submit-btn {
+        min-height: 54px;
+        height: auto;
+        padding: 13px 18px;
+    }
+
+    /* ---------- COURSES ---------- */
+
+    .courses-page {
+        flex-direction: column;
+        width: 100%;
+        gap: 25px;
+        padding: 100px 14px 30px;
+        margin-top: 0;
+    }
+
+    .filters {
+        width: 100%;
+        flex: none;
+        padding: 22px 18px;
+        border-radius: 24px;
+    }
+
+    .filters h2 {
+        font-size: clamp(27px, 7vw, 34px);
+    }
+
+    .filter-btn {
+        min-height: 48px;
+        font-size: 15px;
+        padding: 12px 15px;
+    }
+
+    .filter-btn:hover {
+        transform: none;
+    }
+
+    .filter-btn.active {
+        transform: none;
+    }
+
+    .courses-grid {
+        width: 100%;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .course-card {
+        width: 100%;
+        min-height: 0;
+    }
+
+    .course-card.is-hidden {
+        display: none;
+    }
+
+    .course-card h3 {
+        font-size: 21px;
+        min-height: 0;
+        line-height: 1.25;
+    }
+
+    .course-card p {
+        font-size: 23px;
+    }
+
+    /* ---------- ABOUT ---------- */
+
+    .about-hero {
+        min-height: 100svh;
+        padding: 110px 18px 45px;
+    }
+
+    .about-hero h1 {
+        font-size: clamp(52px, 16vw, 90px);
+        line-height: .9;
+        overflow-wrap: anywhere;
+    }
+
+    .about-hero p {
+        width: 100%;
+        padding: 22px 18px;
+        font-size: 18px;
+        line-height: 1.5;
+        border-radius: 24px;
+    }
+
+    .about-frame {
+        padding-top: 105px;
+        padding-bottom: 45px;
+    }
+
+    .about-frame__top {
+        width: calc(100% - 28px);
+        margin: 35px auto;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .about-frame__title {
+        font-size: clamp(42px, 12vw, 72px);
+    }
+
+    .about-frame__subtitle {
+        padding: 24px 18px;
+        font-size: 17px;
+        line-height: 1.6;
+    }
+
+    .about-frame__bottom {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 35px 14px;
+    }
+
+    .about-mini {
+        min-height: 170px;
+        padding: 25px 18px;
+    }
+
+    .about-mini h3 {
+        font-size: 27px;
+    }
+
+    .about-mini p {
+        font-size: 16px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        padding: 45px 14px;
+    }
+
+    .stat {
+        padding: 22px 12px;
+        border-radius: 20px;
+    }
+
+    .stat h2 {
+        font-size: clamp(34px, 10vw, 48px);
+    }
+
+    .stat p {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .about-cta {
+        padding: 65px 18px;
+    }
+
+    .about-cta h2 {
+        font-size: clamp(31px, 8vw, 48px);
+        line-height: 1.15;
+        margin-bottom: 25px;
+    }
+.gg-img {
+    width: 180px;
+    height: 180px;
+
+    object-fit: cover;
+
+    border-radius: 20px;
+
+    display: block;
+    margin: 0 auto;
+}
+.gg-grig {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+    /* ---------- FOOTER ---------- */
+
+    footer {
+        margin-top: 55px;
+        padding: 40px 22px;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .footer-left,
+    .footer-center,
+    .footer-right {
+        width: 100%;
+    }
+
+    .footer-center,
+    .footer-right {
+        gap: 8px;
+    }
+
+    .footer-left img {
+        max-width: 190px;
+        height: auto;
+    }
+
+    .faq-btn {
+        min-height: 48px;
+    }
+
+    /* ---------- SCROLL TOP ---------- */
+
+    #scrollTopBtn {
+        width: 52px;
+        height: 52px;
+        bottom: 18px;
+        font-size: 23px;
+    }
+
+    /* ---------- MODAL ---------- */
+
+    .course-modal {
+        padding: 12px;
+        overflow-y: auto;
+        align-items: flex-start;
+    }
+
+    .modal-content {
+        width: 100%;
+        max-width: 100%;
+        margin: 65px 0 20px;
+        border-radius: 24px;
+        grid-template-columns: 1fr;
+    }
+
+    .modal-left {
+        min-height: 280px;
+        padding: 35px 35px 20px;
+    }
+
+    .modal-left img {
+        width: 100%;
+        max-height: 260px;
+    }
+
+    .modal-right {
+        padding: 25px 20px 22px;
+        border-left: 0;
+        border-top: 7px solid #ff4f87;
+    }
+
+    .modal-right h2 {
+        font-size: clamp(29px, 8vw, 42px);
+        line-height: 1.1;
+    }
+
+    .modal-right ul {
+        line-height: 1.6;
+        padding-left: 5px;
+    }
+
+    .modal-btn {
+        width: 100%;
+        height: 54px;
+        margin-top: 22px;
+    }
+
+    .close-modal {
+        right: 15px;
+        top: 8px;
+        font-size: 34px;
+    }
+
+    .modal-arrow {
+        width: 42px;
+        height: 42px;
+    }
+
+    .modal-arrow.prev {
+        left: 8px;
+    }
+
+    .modal-arrow.next {
+        right: 8px;
+    }
+}
+
+
+/* =========================
+   SMALL PHONES
+   ========================= */
+
+@media (max-width: 480px) {
+
+    header {
+        width: calc(100% - 16px);
+        top: 8px;
+        height: 62px;
+        padding: 8px 12px;
+        border-radius: 19px;
+    }
+
+    .logo img {
+        height: 40px;
+        max-width: 150px;
+    }
+
+    header nav {
+        top: 70px;
+        width: calc(100vw - 24px);
+    }
+
+    .hero-slider {
+        min-height: 700px;
+    }
+
+    .slide-content {
+        top: 40%;
+        width: calc(100% - 28px);
+        padding: 19px 15px;
+    }
+
+    .slide-content h2 {
+        font-size: clamp(19px, 5.2vw, 24px);
+    }
+
+    .slide-list {
+        font-size: 15px;
+        padding-left: 19px;
+    }
+
+    .slide-list li {
+        margin-bottom: 5px;
+    }
+
+    .slider-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 17px;
+    }
+
+    .prev {
+        left: 7px;
+    }
+
+    .next {
+        right: 7px;
+    }
+
+    .hero-buttons {
+        width: calc(100% - 24px);
+        bottom: 8%;
+    }
+
+    .hero-btn {
+        font-size: 13px;
+        padding: 11px 12px;
+    }
+
+    .teacher-info {
+        width: calc(100% - 20px);
+        margin: 14px 10px 0;
+        padding: 20px 16px;
+    }
+
+    .teacher-photo {
+        min-height: 280px;
+    }
+
+    .teacher-photo img {
+        max-height: 360px;
+    }
+
+    .bestsellers {
+        padding: 50px 12px;
+    }
+
+    .best-grid {
+        gap: 16px;
+    }
+
+    .course-photo {
+        height: 175px;
+    }
+
+    .registration {
+        width: calc(100% - 20px);
+        padding: 24px 14px;
+    }
+
+    .courses-page {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .filters {
+        padding: 20px 14px;
+    }
+
+    .courses-grid {
+        gap: 16px;
+    }
+
+    .about-hero {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .about-hero p {
+        font-size: 16px;
+        padding: 19px 15px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+        padding: 40px 12px;
+    }
+
+    .about-cta {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .modal-left {
+        min-height: 240px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+
+/* =========================
+   VERY SMALL PHONES
+   ========================= */
+
+@media (max-width: 360px) {
+
+    header {
+        height: 58px;
+    }
+
+    .logo img {
+        height: 37px;
+        max-width: 135px;
+    }
+
+    .mobile-menu-toggle {
+        width: 42px;
+        height: 42px;
+        flex-basis: 42px;
+    }
+
+    .mobile-menu-toggle span {
+        width: 21px;
+    }
+
+    .hero-slider {
+        min-height: 720px;
+    }
+
+    .slide-content {
+        top: 38%;
+    }
+
+    .hero-buttons {
+        bottom: 7%;
+    }
+
+    .hero-btn {
+        font-size: 12px;
+        min-height: 46px;
+    }
+
+    .teacher-title .blue {
+        font-size: 34px;
+    }
+
+    .teacher-title .red {
+        font-size: 28px;
+    }
+
+    .teacher-title .sub {
+        font-size: 15px;
+    }
+
+    .course-card h3,
+    .bestseller h3 {
+        font-size: 19px;
+    }
+
+    .course-card p,
+    .price {
+        font-size: 21px;
+    }
+
+    .registration h2 {
+        font-size: 29px;
+    }
+}
+
+
+/* =========================
+   REDUCED MOTION
+   ========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+
+/* =========================
+   TOUCH DEVICES
+   ========================= */
+
+@media (hover: none) {
+
+    .nav-btn:hover,
+    .hero-btn:hover,
+    .course-btn:hover,
+    .filter-btn:hover,
+    .bestseller:hover,
+    .course-card:hover,
+    .reset-filters:hover {
+        transform: none;
+    }
+
+    .course-card:hover .course-photo img,
+    .bestseller:hover .course-photo img {
+        transform: none;
+    }
+}
+
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* ==============================================================
+   TYPOGRAPHY
+   ============================================================== */
+h1, h2 {
+    line-height: 1.3;
+}
+
+h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--color-text);
+}
+
+.privacy-intro {
+    font-size: 1rem;
+    background-color: var(--color-footer-bg);
+    border-left: 5px solid var(--color-accent);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 0 8px 8px 0;
+}
+
+.policy-date {
+    margin-top: 2.5rem !important;
+    font-style: italic;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1rem;
+    font-size: 0.95rem;
+}
+
+/* Списки */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 1.5rem;
+}
+
+ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+ul li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: bold;
+}
+
+
+
+
+@media (max-width: 768px) {
+    .header { flex-wrap: wrap; gap: 1rem; }
+    .nav { order: 2; width: 100%; justify-content: center; overflow-x: auto; }
+    .footer { flex-direction: column; text-align: center; gap: 1.5rem; }
+    .footer-right { text-align: center; }
+}
+/* =========================================================
+   ДОРАБОТКА ДИЗАЙНА — АККУРАТНЫЕ ПЕРЕОПРЕДЕЛЕНИЯ
+   ========================================================= */
+
+/* ---------- ГЛАВНАЯ: слайдер оставляем одним большим фото ---------- */
+.hero-slider {
+    height: 100vh;
+    min-height: 720px;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-content {
+    width: min(860px, calc(100% - 48px));
+    padding: clamp(24px, 3.5vw, 44px);
+    background: rgba(255, 255, 255, .10);
+    border: 1px solid rgba(255, 255, 255, .24);
+    box-shadow: 0 20px 60px rgba(0,0,0,.16);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.slide-content h2 {
+    font-size: clamp(22px, 3vw, 38px);
+    line-height: 1.18;
+}
+
+/* Фото-блоки сразу после слайдера: фото касаются краёв экрана,
+   а текстовая карточка находится по вертикальному центру. */
+.teacher-section {
+    min-height: 620px;
+    align-items: stretch;
+}
+
+.teacher-info {
+    width: 55%;
+    margin: 0;
+    align-self: center;
+    padding: clamp(32px, 4.5vw, 62px);
+    border-radius: 0;
+    background: rgba(255,255,255,.96);
+    box-shadow: 0 18px 50px rgba(0,0,0,.10);
+}
+
+.teacher-photo {
+    width: 45%;
+    height: 620px;
+    margin: 0;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+}
+
+.teacher-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.orange-section .teacher-photo {
+    order: 1;
+}
+
+.orange-section .teacher-info {
+    order: 2;
+}
+
+/* ---------- «С ЧЕГО НАЧАТЬ» ---------- */
+.bestsellers {
+    padding: clamp(70px, 8vw, 110px) clamp(16px, 4vw, 50px);
+}
+
+.best-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 1180px;
+    margin: 0 auto;
+    gap: 28px;
+}
+
+.bestseller {
+    width: 100%;
+    min-height: 560px;
+    height: 560px;
+    border-radius: 28px;
+}
+
+.bestseller .course-photo {
+    flex: 0 0 315px;
+    height: 315px;
+    padding: 16px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bestseller .course-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.bestseller h3 {
+    min-height: 54px;
+    padding: 18px 20px 4px;
+    font-size: clamp(20px, 1.8vw, 24px);
+    line-height: 1.15;
+}
+
+.bestseller .course-desc {
+    min-height: 45px;
+    max-height: 48px;
+    padding: 0 20px;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    /* -webkit-line-clamp: 2; */
+    overflow: hidden;
+}
+
+.bestseller .price {
+    margin: 0;
+    padding: 8px 20px 2px;
+    font-size: 22px;
+}
+
+.bestseller .course-btn {
+    width: calc(100% - 32px);
+    height: 48px;
+    min-height: 48px;
+    margin: 12px 16px 16px;
+}
+
+/* ---------- КАРТОЧКИ «ЗАНЯТИЯ» ---------- */
+.courses-page {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 130px 40px 60px;
+    gap: 32px;
+}
+
+.filters {
+    width: 285px;
+    flex: 0 0 285px;
+    position: sticky;
+    top: 125px;
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.filters-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.filters-head h2 {
+    margin: 0;
+}
+
+.filters-close,
+.mobile-filter-toggle {
+    display: none;
+}
+
+.filters-backdrop {
+    display: none;
+}
+
+.courses-grid {
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    gap: 28px;
+}
+
+.course-card {
+    min-height: 570px;
+    height: 570px;
+    border-radius: 28px;
+}
+
+.course-card .course-photo {
+    flex: 0 0 315px;
+    height: 315px;
+    padding: 16px;
+    background: #fff;
+}
+
+.course-card .course-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.course-card h3 {
+    min-height: 58px;
+    padding: 18px 20px 5px;
+    font-size: clamp(20px, 2vw, 24px);
+    line-height: 1.15;
+}
+
+.course-card p {
+    min-height: 34px;
+    margin: 0;
+    padding: 5px 20px 0;
+    font-size: 22px;
+}
+
+.course-card .course-btn {
+    margin: auto 16px 16px;
+    width: calc(100% - 32px);
+    height: 48px;
+    min-height: 48px;
+}
+
+/* ---------- ABOUT HERO ---------- */
+.about-hero {
+    min-height: 88vh;
+    padding: 125px clamp(18px, 6vw, 90px) 70px;
+    justify-content: flex-start;
+    align-items: center;
+    background-image:
+        linear-gradient(105deg, rgba(18,45,53,.68), rgba(18,45,53,.25)),
+        url("../img/3.jfif");
+    background-size: cover;
+    background-position: center;
+}
+
+.about-hero__content {
+    width: min(1180px, 100%);
+    display: grid;
+    grid-template-columns: minmax(250px, .8fr) minmax(420px, 1.2fr);
+    align-items: center;
+    gap: clamp(30px, 7vw, 100px);
+    margin: 0 auto;
+}
+
+.about-hero__content h1 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    text-align: left;
+    font-family: "SchoolTitle", sans-serif;
+    font-size: clamp(64px, 11vw, 150px);
+    line-height: .85;
+    color: #fff;
+    text-shadow: 0 15px 45px rgba(0,0,0,.22);
+}
+
+.about-hero__glass {
+    width: min(700px, 100%);
+    margin-left: auto;
+    padding: clamp(30px, 4vw, 52px);
+    text-align: left;
+    border-radius: 32px;
+    background: rgba(255,255,255,.13);
+    border: 1px solid rgba(255,255,255,.34);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 25px 70px rgba(0,0,0,.22);
+}
+
+.about-hero__glass p {
+    max-width: none;
+    font-size: clamp(18px, 2vw, 27px);
+    line-height: 1.45;
+}
+
+/* ---------- ABOUT: дипломы и четыре принципа ---------- */
+.diploma-section {
+    padding: 70px clamp(18px, 6vw, 90px);
+    gap: 22px;
+}
+
+.diploma-card {
+    min-height: 190px;
+    padding: 28px 24px;
+}
+
+.diploma-card h3 {
+    font-size: clamp(26px, 3vw, 34px);
+}
+
+.stats {
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    gap: 18px;
+    padding: 55px clamp(18px, 6vw, 90px);
+}
+
+.stat {
+    min-height: 165px;
+    padding: 24px 20px;
+    border-radius: 24px;
+}
+
+.stat h2 {
+    font-size: clamp(28px, 3vw, 44px);
+    line-height: 1.05;
+}
+
+.stat p {
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+/* ---------- MOBILE HEADER: меню + лупа ---------- */
+@media (max-width: 768px) {
+    header {
+        display: flex;
+        gap: 8px;
+    }
+
+    header .logo {
+        margin-right: auto;
+    }
+
+    .mobile-filter-toggle {
+        width: 46px;
+        height: 46px;
+        padding: 0;
+        border: 0;
+        border-radius: 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255,255,255,.82);
+        color: #FF4B6E;
+        cursor: pointer;
+        font-size: 31px;
+        line-height: 1;
+        flex: 0 0 46px;
+        transition: .25s ease;
+    }
+
+    .mobile-filter-toggle.active {
+        background: #FF4B6E;
+        color: #fff;
+    }
+
+    .filters {
+        position: fixed;
+        z-index: 1500;
+        top: 88px;
+        right: 12px;
+        width: min(340px, calc(100vw - 24px));
+        max-height: calc(100svh - 105px);
+        padding: 22px 18px;
+        border-radius: 26px;
+        transform: translateY(-12px) scale(.97);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
+        overflow-y: auto;
+    }
+
+    .filters.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0) scale(1);
+    }
+
+    .filters-close {
+        display: inline-flex;
+        width: 38px;
+        height: 38px;
+        flex: 0 0 38px;
+        border: 0;
+        border-radius: 12px;
+        background: rgba(255,255,255,.7);
+        color: #FF4B6E;
+        font-size: 28px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .filters-backdrop {
+        position: fixed;
+        z-index: 1490;
+        inset: 0;
+        display: block;
+        background: rgba(10,20,24,.34);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: .25s ease;
+    }
+
+    body.filters-open .filters-backdrop {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .courses-page {
+        padding: 105px 14px 40px;
+    }
+
+    .courses-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .course-card {
+        height: 560px;
+        min-height: 560px;
+    }
+
+    .course-card .course-photo {
+        flex-basis: 305px;
+        height: 305px;
+        padding: 14px;
+    }
+
+    .best-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bestseller {
+        height: 550px;
+        min-height: 550px;
+    }
+
+    .bestseller .course-photo {
+        flex-basis: 300px;
+        height: 300px;
+    }
+
+    .teacher-section,
+    .teacher-section.orange-section {
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .teacher-info,
+    .orange-section .teacher-info {
+        order: 1;
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        padding: 32px 22px;
+    }
+
+    .teacher-photo,
+    .orange-section .teacher-photo {
+        order: 2;
+        width: 100%;
+        height: auto;
+        min-height: 330px;
+        margin: 0;
+        align-items: center;
+    }
+
+    .teacher-photo img {
+        width: 100%;
+        height: auto;
+        max-height: 470px;
+        object-fit: contain;
+    }
+
+    .about-hero {
+        min-height: 88svh;
+        padding: 110px 18px 45px;
+    }
+
+    .about-hero__content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .about-hero__content h1 {
+        font-size: clamp(62px, 20vw, 100px);
+    }
+
+    .about-hero__glass {
+        width: 100%;
+        margin: 0;
+        padding: 25px 20px;
+        border-radius: 24px;
+    }
+
+    .about-hero__glass p {
+        font-size: 17px;
+    }
+
+    .diploma-section {
+        grid-template-columns: 1fr;
+        padding: 45px 16px;
+    }
+
+    .diploma-card {
+        min-height: 150px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+        padding: 38px 16px;
+        gap: 14px;
+    }
+
+    .stat {
+        min-height: 135px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-slider {
+        min-height: 700px;
+    }
+
+    .slide-content {
+        width: calc(100% - 54px);
+        padding: 20px 16px;
+    }
+
+    .slide-content h2 {
+        font-size: clamp(19px, 5vw, 24px);
+    }
+
+    .teacher-info {
+        padding: 28px 18px;
+    }
+
+    .teacher-photo {
+        min-height: 280px;
+    }
+
+    .bestseller,
+    .course-card {
+        height: 530px;
+        min-height: 530px;
+    }
+
+    .bestseller .course-photo,
+    .course-card .course-photo {
+        flex-basis: 285px;
+        height: 285px;
+    }
+
+    .bestseller h3,
+    .course-card h3 {
+        font-size: 19px;
+        min-height: 50px;
+    }
+
+    .bestseller .course-desc {
+        font-size: 13px;
+    }
+
+    .about-hero__content h1 {
+        font-size: clamp(58px, 19vw, 88px);
+    }
+}
+
+/* ---------- FAQ / ПОЛИТИКА: только визуальная переработка, текст не меняем ---------- */
+body:has(.privacy-page) {
+    background: #f5f4ee;
+    color: #242424;
+}
+
+.privacy-page {
+    width: min(1080px, calc(100% - 28px));
+    max-width: none;
+    padding: 125px 0 70px;
+}
+
+.privacy-container {
+    background: rgba(255,255,255,.94);
+    border: 1px solid rgba(45,122,139,.12);
+    border-radius: 30px;
+    padding: clamp(28px, 5vw, 60px);
+    box-shadow: 0 20px 60px rgba(0,0,0,.09);
+}
+
+.privacy-container h2.section-title {
+    display: block;
+    width: 100%;
+    margin: 0 0 35px;
+    padding: 0 0 18px;
+    border-bottom: 2px solid #FF4B6E;
+    text-align: left;
+    font-family: "SchoolTitle", sans-serif;
+    font-size: clamp(30px, 4vw, 52px);
+    line-height: 1.1;
+    color: #2D7A8B;
+}
+
+.privacy-section {
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(45,122,139,.14);
+}
+
+.privacy-section:last-child {
+    border-bottom: 0;
+}
+
+.privacy-section h2 {
+    margin: 0 0 14px;
+    font-family: "SchoolTitle", sans-serif;
+    font-size: clamp(21px, 2.3vw, 30px);
+    line-height: 1.2;
+    color: #2D7A8B;
+}
+
+.privacy-section p,
+.privacy-intro,
+.policy-date {
+    font-family: Arial, sans-serif;
+    color: #444 !important;
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+.privacy-intro {
+    background: #f7f8f7;
+    border-left: 4px solid #FF4B6E;
+    border-radius: 0 16px 16px 0;
+    padding: 18px 20px;
+}
+
+.policy-date {
+    background: #f7f8f7;
+    border-top: 1px solid rgba(45,122,139,.16);
+    border-radius: 16px;
+    padding: 18px 20px !important;
+}
+
+@media (max-width: 768px) {
+    .privacy-page {
+        width: calc(100% - 20px);
+        padding-top: 105px;
+    }
+
+    .privacy-container {
+        padding: 24px 18px;
+        border-radius: 22px;
+    }
+
+    .privacy-section {
+        padding: 20px 0;
+    }
+
+    .privacy-section p,
+    .privacy-intro,
+    .policy-date {
+        font-size: 15px;
+        line-height: 1.65;
+    }
+}
+
+
+/* Иконка лупы в мобильной панели */
+.mobile-filter-toggle span {
+    position: relative;
+    display: block;
+    width: 17px;
+    height: 17px;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    font-size: 0;
+}
+
+.mobile-filter-toggle span::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 2px;
+    right: -6px;
+    bottom: -3px;
+    border-radius: 2px;
+    background: currentColor;
+    transform: rotate(45deg);
+    transform-origin: left center;
+}
+
+
+.checkbox label a {
+    color: #2D7A8B;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.checkbox label a:hover {
+    color: #FF4B6E;
+}
+
+
+/* =========================================================
+   FINAL UI POLISH — 2026
+   Без изменения существующих классов/логики
+========================================================= */
+
+/* HERO: мягкая белая подсветка стрелок */
+.hero-slider .slider-btn {
+    width: 58px;
+    height: 58px;
+    background: rgba(255,255,255,.14);
+    border: 1px solid rgba(255,255,255,.28);
+    color: #fff;
+    box-shadow: 0 0 0 rgba(255,255,255,0);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+}
+
+.hero-slider .slider-btn:hover,
+.hero-slider .slider-btn:focus-visible {
+    background: rgba(255,255,255,.28);
+    color: #fff;
+    box-shadow:
+        0 0 18px rgba(255,255,255,.28),
+        0 0 42px rgba(255,255,255,.16);
+}
+
+.hero-slider .slider-btn:active {
+    transform: translateY(-50%) scale(.94);
+    background: rgba(255,255,255,.34);
+    box-shadow: 0 0 28px rgba(255,255,255,.34);
+}
+
+/* HERO: текст не залезает на кнопки */
+.hero-slider .slide-content {
+    width: min(900px, calc(100% - 150px));
+    max-width: 900px;
+    padding: clamp(22px, 3vw, 38px);
+    top: 42%;
+    max-height: 52vh;
+    overflow: hidden;
+}
+
+.hero-slider .slide-content h2 {
+    font-size: clamp(21px, 2.35vw, 32px);
+    line-height: 1.22;
+}
+
+.hero-slider .slide-list {
+    margin-top: 14px;
+    padding-left: 22px;
+    font-size: clamp(16px, 1.6vw, 21px);
+    line-height: 1.35;
+}
+
+.hero-slider .slide-list li {
+    margin-bottom: 7px;
+}
+
+.hero-slider .hero-buttons {
+    width: min(1100px, calc(100% - 40px));
+    bottom: 8%;
+    gap: 12px;
+}
+
+.hero-slider .hero-btn {
+    padding: 12px 19px;
+    border-radius: 15px;
+    font-size: 15px;
+    line-height: 1.2;
+}
+
+/* Блоки "Как проходят..." — крупнее текст */
+.teacher-section .teacher-title h1 {
+    font-size: clamp(38px, 4.5vw, 62px);
+    line-height: 1.05;
+}
+
+.teacher-section .teacher-text p,
+.teacher-section > .teacher-info > p {
+    font-size: clamp(18px, 1.6vw, 22px);
+    line-height: 1.55;
+}
+
+/* Фото по краям экрана на десктопе */
+@media (min-width: 769px) {
+    .teacher-section {
+        width: 100vw;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .teacher-section .teacher-photo {
+        width: 45%;
+        flex: 0 0 45%;
+    }
+
+    .teacher-section .teacher-info {
+        width: 55%;
+        flex: 0 0 55%;
+    }
+
+    .pink-section .teacher-photo,
+    .orange-section .teacher-photo {
+        margin: 0;
+    }
+}
+
+/* Единый маркетплейс-стиль карточек курса */
+.bestseller,
+.course-card {
+    width: 100%;
+    min-height: 0;
+    height: auto;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(0,0,0,.10);
+}
+
+.best-grid {
+    grid-template-columns: repeat(auto-fit, minmax(270px, 320px));
+}
+
+.courses-grid {
+    grid-template-columns: repeat(auto-fit, minmax(270px, 320px));
+}
+
+/* Изображение НЕ обрезается и не получает белых полос */
+.bestseller .course-photo,
+.course-card .course-photo {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    overflow: hidden;
+    line-height: 0;
+    flex: 0 0 auto;
+}
+
+.bestseller .course-photo img,
+.course-card .course-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    background: transparent;
+    border-radius: 24px 24px 0 0;
+}
+
+/* Контент карточки */
+.bestseller h3,
+.course-card h3 {
+    margin: 0;
+    padding: 18px 18px 7px;
+    min-height: 0;
+    font-size: 21px;
+    line-height: 1.2;
+}
+
+.bestseller .course-desc,
+.course-card .course-desc {
+    flex: 1 1 auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0 18px;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.bestseller .price,
+.course-card > p:not(.course-desc) {
+    margin: 0;
+    padding: 10px 18px 2px;
+}
+
+.bestseller .course-btn,
+.course-card .course-btn {
+    margin: auto 12px 12px;
+    width: calc(100% - 24px);
+    min-height: 50px;
+    height: 50px;
+    flex: 0 0 50px;
+    border-radius: 15px;
+}
+
+/* Дипломы — одинаковый размер и вариант */
+.diploma-card {
+    min-height: 230px;
+    height: 230px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.diploma-card h3 {
+    width: 100%;
+    font-size: clamp(27px, 3vw, 34px);
+    color: #FF4B6E;
+}
+
+.diploma-card p {
+    color: #fff;
+}
+
+/* Дипломные фото — небольшие и аккуратные */
+.diploma-photos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.diploma-photos img {
+    height: 230px;
+    padding: 7px;
+    border-radius: 16px;
+    background: #f5f5f5;
+    object-fit: contain;
+    box-shadow: 0 5px 16px rgba(0,0,0,.07);
+}
+
+/* Четыре информационных блока на About — белые */
+body:has(.stats) .stats {
+    background: #2D7A8B;
+}
+
+body:has(.stats) .stat {
+    background: #fff;
+    border: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: 0 10px 28px rgba(0,0,0,.10);
+}
+
+body:has(.stats) .stat p {
+    color: #444;
+}
+
+/* Телефон */
+#phone {
+    letter-spacing: .03em;
+    font-variant-numeric: tabular-nums;
+}
+
+/* FAQ/документы — меню */
+.documents-menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 0 0 30px;
+}
+
+.documents-menu a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 64px;
+    padding: 14px 18px;
+    border-radius: 18px;
+    background: #f7f8f7;
+    color: #2D7A8B;
+    text-decoration: none;
+    text-align: center;
+    border: 1px solid rgba(45,122,139,.12);
+    transition: .25s ease;
+}
+
+.documents-menu a:hover {
+    background: #FF4B6E;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Mobile final overrides */
+@media (max-width: 768px) {
+    .hero-slider {
+        height: 100svh;
+        min-height: 650px;
+    }
+
+    .hero-slider .slide-content {
+        top: 37%;
+        width: calc(100% - 82px);
+        max-height: 43svh;
+        padding: 18px 16px;
+        border-radius: 22px;
+    }
+
+    .hero-slider .slide-content h2 {
+        font-size: clamp(17px, 5vw, 23px);
+        line-height: 1.25;
+    }
+
+    .hero-slider .slide-list {
+        margin-top: 8px;
+        padding-left: 18px;
+        font-size: clamp(14px, 4vw, 17px);
+        line-height: 1.3;
+    }
+
+    .hero-slider .slide-list li {
+        margin-bottom: 5px;
+    }
+
+    .hero-slider .hero-buttons {
+        width: calc(100% - 28px);
+        bottom: 9%;
+        gap: 8px;
+    }
+
+    .hero-slider .hero-btn {
+        padding: 10px 12px;
+        font-size: 12px;
+        border-radius: 12px;
+    }
+
+    .hero-slider .slider-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 21px;
+    }
+
+    .hero-slider .prev { left: 10px; }
+    .hero-slider .next { right: 10px; }
+
+    .teacher-section .teacher-title h1 {
+        font-size: clamp(34px, 9vw, 48px);
+    }
+
+    .teacher-section .teacher-text p,
+    .teacher-section > .teacher-info > p {
+        font-size: 17px;
+        line-height: 1.55;
+    }
+
+    /* Фото двух секций без боковых полос */
+    .teacher-section .teacher-photo,
+    .orange-section .teacher-photo {
+        width: 100%;
+        min-height: 0;
+        height: auto;
+        padding: 0;
+        margin: 0;
+        align-items: stretch;
+    }
+
+    .teacher-section .teacher-photo img {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: none;
+        object-fit: contain;
+        margin: 0;
+    }
+
+    /* Одинаковые карточки на двух страницах */
+    .best-grid,
+    .courses-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bestseller,
+    .course-card {
+        height: auto;
+        min-height: 0;
+    }
+
+    .bestseller .course-photo,
+    .course-card .course-photo {
+        height: auto;
+        flex-basis: auto;
+    }
+
+    .bestseller .course-photo img,
+    .course-card .course-photo img {
+        height: auto;
+        width: 100%;
+        object-fit: contain;
+    }
+
+    .bestseller h3,
+    .course-card h3 {
+        font-size: 20px;
+        line-height: 1.22;
+    }
+
+    .bestseller .course-desc,
+    .course-card .course-desc {
+        font-size: 15px;
+    }
+
+    .bestseller .course-btn,
+    .course-card .course-btn {
+        margin-top: 14px;
+    }
+
+    .diploma-section {
+        grid-template-columns: 1fr;
+        padding: 45px 16px;
+    }
+
+    .diploma-card {
+        height: auto;
+        min-height: 155px;
+    }
+
+    .diploma-photos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .diploma-photos img {
+        height: 190px;
+    }
+
+    .documents-menu {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-slider .slide-content {
+        top: 35%;
+        width: calc(100% - 72px);
+        max-height: 42svh;
+    }
+
+    .hero-slider .hero-buttons {
+        bottom: 7%;
+    }
+
+    .hero-slider .hero-btn {
+        width: 100%;
+        max-width: 330px;
+    }
+
+    .diploma-photos {
+        grid-template-columns: 1fr;
+    }
+
+    .diploma-photos img {
+        height: 220px;
+    }
+}
+
+
+/* =========================================================
+   FINAL PROGRAM / FORM / TEACHER OVERRIDES
+   ========================================================= */
+
+/* Карточки программ: вся информация помещается внутри карточки */
+.bestseller,
+.course-card {
+    min-height: 560px;
+}
+
+.bestseller h3,
+.course-card h3 {
+    font-size: 20px;
+    line-height: 1.22;
+}
+
+.bestseller .course-desc,
+.course-card .course-desc {
+    font-size: 15px;
+    line-height: 1.45;
+    color: #777;
+}
+
+.price {
+    font-size: 25px !important;
+    line-height: 1.25;
+    color: #FF4B6E;
+}
+
+.price.free,
+.course-card .price.free,
+.bestseller .price.free {
+    color: #17a34a !important;
+}
+
+.old-price,
+.price-note {
+    color: #8b8b8b;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.bestseller .course-btn,
+.course-card .course-btn {
+    flex-shrink: 0;
+}
+
+/* В фильтре вместо формата — поясняющий текст */
+.filter-about {
+    margin: 0 0 25px;
+    padding: 16px 18px;
+    border-radius: 18px;
+    background: rgba(45,122,139,.07);
+    color: #666;
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+/* Тексты педагогов — обычным горизонтальным абзацем, без колонок */
+.teacher-text {
+    display: block !important;
+    width: 100%;
+    text-align: left;
+}
+
+.teacher-text p {
+    display: block;
+    width: 100%;
+    margin: 0 0 18px;
+    text-align: left;
+}
+
+/* Поле телефона */
+#phone {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: .02em;
+}
+
+/* Скрыть телефон только из футеров; данные в политике конфиденциальности не трогаем */
+footer .phone,
+footer .phone-number,
+footer a[href^="tel:"] {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .bestseller,
+    .course-card {
+        min-height: 0;
+    }
+
+    .bestseller h3,
+    .course-card h3 {
+        font-size: 19px;
+    }
+
+    .bestseller .course-desc,
+    .course-card .course-desc {
+        font-size: 14px;
+    }
+
+    .price {
+        font-size: 22px !important;
+    }
+
+    .old-price,
+    .price-note {
+        font-size: 12px;
+    }
+
+    .teacher-text p {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+}

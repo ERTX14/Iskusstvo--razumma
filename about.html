@@ -1,0 +1,462 @@
+<!-- Файл: about.html | Основные секции отмечены комментариями; стили находятся в css/style.css. -->
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>О нас</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <!-- ================= ШАПКА ================= -->
+
+    <header>
+
+        <div class="logo">
+
+            <img src="img/Frame 23.png" alt="Логотип">
+
+        </div>
+
+        <nav>
+
+            <a href="about.html" class="nav-btn">О НАС</a>
+
+            <a href="courses.html" class="nav-btn">ЗАНЯТИЯ</a>
+
+            <a href="index.html" class="nav-btn">ГЛАВНАЯ</a>
+
+        </nav>
+
+        <button
+
+            class="mobile-menu-toggle"
+
+            type="button"
+
+            aria-label="Открыть меню"
+
+            aria-expanded="false"
+
+        >
+
+            <span></span>
+
+            <span></span>
+
+            <span></span>
+
+        </button>
+
+    </header>
+
+    <!-- ================= ГЛАВНЫЙ ЭКРАН ================= -->
+
+    <section class="about-hero">
+
+        <div class="about-hero__content">
+            <h1>О НАС</h1>
+        <div class="about-hero__glass">
+
+            <p>
+
+                Ребёнок получает знания и модели мышления,
+
+                о которых редко говорят взрослые, и учится
+
+                применять их в реальных жизненных ситуациях.
+
+            </p>
+
+        </div>
+        </div>
+
+    </section>
+
+    <!-- ================= ПРЕПОДАВАТЕЛЬ 1 ================= -->
+
+    <section class="teacher-section pink-section">
+
+        <div class="teacher-info">
+
+            <div class="teacher-title">
+
+                <span class="blue">
+
+                    СПЕЦИАЛИСТ
+
+                </span>
+
+                <span class="red">
+
+                    Галина Чернявская
+
+                </span>
+
+                <span class="sub">
+
+                    Педагог, автор программ.
+
+                    Специализация — работа с подростками
+
+                    и старшими школьниками.
+
+                </span>
+
+            </div>
+
+            <div class="teacher-text">
+
+                <p>
+
+                    Большой опыт работы с подростками,
+
+                    мышлением и профориентацией помогает
+
+                    ребёнку лучше понимать свои сильные стороны,
+
+                    принимать решения, выстраивать отношения
+
+                    и осознанно выбирать направление своего будущего.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="teacher-photo">
+
+            <img
+
+                src="img/Frame 26.png"
+
+                alt="Галина Чернявская"
+
+            >
+
+        </div>
+
+    </section>
+
+    <!-- ================= ПРЕПОДАВАТЕЛЬ 2 ================= -->
+
+    <section class="teacher-section orange-section">
+
+        <div class="teacher-photo">
+
+            <img
+
+                src="img/Frame 25.png"
+
+                alt="Оксана Орлова"
+
+            >
+
+        </div>
+
+        <div class="teacher-info">
+
+            <div class="teacher-title">
+
+                <span class="blue">
+
+                    СПЕЦИАЛИСТ
+
+                </span>
+
+                <span class="red">
+
+                    Оксана Орлова
+
+                </span>
+
+                <span class="sub">
+
+                    Педагог, автор программ.
+
+                    Специализация — работа с дошкольниками
+
+                    и детьми младшего школьного возраста.
+
+                </span>
+
+            </div>
+
+            <div class="teacher-text">
+
+                <p>
+
+                    Большой опыт работы с детьми этого возраста
+
+                    помогает создавать занятия, в которых ребёнку
+
+                    интересно, понятно и безопасно учиться новому,
+
+                    общаться и становиться самостоятельнее.
+
+                </p>
+
+                <p>
+
+                    Ведущий педагог программы
+
+                    «Социальная и эмоциональная готовность к школе».
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+<section class="diploma-section">
+
+    <button class="diploma-card" type="button" onclick="openDiploma('education')">
+        <h3>Образование и профессиональная подготовка</h3>
+        <p>Дипломы, грамоты и документы</p>
+    </button>
+
+    <button class="diploma-card" type="button" onclick="openDiploma('recognition')">
+        <h3>Профессиональное признание</h3>
+        <p>Достижения и профессиональные награды</p>
+    </button>
+
+    <button class="diploma-card" type="button" onclick="openDiploma('certificates')">
+        <h3>Дополнительные сертификаты</h3>
+        <p>Повышение квалификации и обучение</p>
+    </button>
+
+</section>
+
+
+<!-- =========================
+     ОКНО 1
+========================= -->
+
+<div class="diploma-popup" id="education">
+
+    <div class="diploma-popup-box">
+
+        <button
+            class="diploma-popup-close"
+            type="button"
+            onclick="closeDiploma('education')"
+        >
+            ×
+        </button>
+
+        <h2>Образование и профессиональная подготовка</h2>
+
+        <div class="diploma-photos">
+
+            <img src="img/64cb6cfa-ac1e-4e4e-8103-d5ba27797b8e.jpg" alt="Диплом 1">
+            <img src="img/39345085-1e66-45f3-aeda-f48b7fa1462a.jpg" alt="Диплом 2">
+            <img src="img/20ce0367-e2ff-4617-93fd-cbc83b931b40.jpg" alt="Диплом 3">
+            <img src="img/70fb9723-ba8a-47aa-af62-4027fc2f0dab.jpg" alt="Диплом 4">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     ОКНО 2
+========================= -->
+
+<div class="diploma-popup" id="recognition">
+
+    <div class="diploma-popup-box">
+
+        <button
+            class="diploma-popup-close"
+            type="button"
+            onclick="closeDiploma('recognition')"
+        >
+            ×
+        </button>
+
+        <h2>Профессиональное признание</h2>
+
+        <div class="diploma-photos">
+
+            <img src="img/4d509fcd-d96b-437d-815c-765fa6dbff90.jpg" alt="Награда 1">
+            <img src="img/0ad6a20b-0075-4df9-a53c-1480a5d272ec.jpg" alt="Награда 2">
+            <img src="img/a8f9bf03-88da-429e-9aa0-af16a4d5a7b6.jpg" alt="Награда 3">
+            <img src="img/79b2b58f-f538-44b8-af54-b8b796a0edae.jpg" alt="Награда 4">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     ОКНО 3
+========================= -->
+
+<div class="diploma-popup" id="certificates">
+
+    <div class="diploma-popup-box">
+
+        <button
+            class="diploma-popup-close"
+            type="button"
+            onclick="closeDiploma('certificates')"
+        >
+            ×
+        </button>
+
+        <h2>Дополнительные сертификаты</h2>
+
+        <div class="diploma-photos">
+
+            <img src="img/5f32e8c2-9ed5-40be-a4e7-49174968ae70.jpg" alt="Сертификат 1">
+            <img src="img/26791d65-5ada-4519-8229-5b7191d5da7c.jpg" alt="Сертификат 2">
+            <img src="img/f50ac9f4-417a-4262-9fd0-641d604b52f6.jpg" alt="Сертификат 3">
+            <img src="img/f400a825-f3eb-44a7-bef0-9012f744f009.jpg" alt="Сертификат 3">
+            <img src="img/a26f9793-939e-406e-abf5-784af2cde675.jpg" alt="Сертификат 3">
+            <img src="img/049a5acf-7604-4822-ae4e-0c3a8fe12b80.jpg" alt="Сертификат 3">
+        </div>
+
+    </div>
+
+</div>
+<section class="stats">
+
+    <div class="stat">
+
+        <h2>Индивидуальный подход</h2>
+
+        <p>
+            учитываем возраст и особенности ребёнка
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h2>Безопасная среда</h2>
+
+        <p>
+            без сравнения, давления и оценивания
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h2>Учимся через действие</h2>
+
+        <p>
+            игра, творчество и практические задания
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h2>Связываем с жизнью</h2>
+
+        <p>
+
+отрабатываем навыки на примерах реальных ситуаций
+        </p>
+
+    </div>
+
+</section>
+    <!-- ================= КНОПКА НАВЕРХ ================= -->
+
+    <button type="button" id="scrollTopBtn">
+
+        ↑
+
+    </button>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer id="contacts">
+
+        <div class="footer-left">
+
+            <img
+
+                src="img/Frame 23.png"
+
+                
+
+            >
+
+            <p>
+
+                Студия развития детей
+
+                «Искусство Разума»
+
+            </p>
+
+        </div>
+
+        <div class="footer-center">
+
+            <h3>
+
+                Навигация
+
+            </h3>
+
+            <a href="index.html">
+
+                Главная
+
+            </a>
+
+            <a href="courses.html">
+
+                Курсы
+
+            </a>
+
+            <a href="about.html">
+
+                О нас
+
+            </a>
+
+        </div>
+
+        <div class="footer-right">
+
+
+             <a
+            href="FAQ.html"
+            class="faq-btn"
+        >Политика обработки персональных данных</a>
+
+        </div>
+
+    </footer>
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="js/script.js" defer></script>
+
+<script src="js/site-content.js" defer></script>
+</body>
+
+</html>
