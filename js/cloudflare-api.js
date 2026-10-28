@@ -1,7 +1,7 @@
 /* ИСКУССТВО РАЗУМА — отправка заявок через Cloudflare Worker.
    Перед публикацией укажите URL Worker в API_BASE ниже. */
 (() => {
-  const API_BASE = "https://YOUR-WORKER.YOUR-SUBDOMAIN.workers.dev";
+  const API_BASE = "https://iskustv-razuma-api.ertalogin.workers.dev";
   const form = document.getElementById("registerForm");
   if (!form) return;
   form.addEventListener("submit", async (event) => {
