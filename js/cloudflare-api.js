@@ -18,8 +18,14 @@
       const response = await fetch(`${API_BASE}/api/applications`, {
         method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data)
       });
-      const result = await response.json();
-      if (!response.ok || !result.success) throw new Error(result.message || "Не удалось отправить заявку.");
+      const responseText = await response.text();
+      let result;
+      try {
+        result = JSON.parse(responseText);
+      } catch {
+        throw new Error(`Сервер вернул не JSON (HTTP ${response.status}). Проверьте адрес Worker и его публикацию.`);
+      }
+      if (!response.ok || !result.success) throw new Error(result.message || `Не удалось отправить заявку (HTTP ${response.status}).`);
       alert(result.message || "Заявка отправлена!"); form.reset();
     } catch (error) { alert(error.message || "Ошибка соединения. Попробуйте ещё раз."); }
     finally { if (submit) { submit.disabled = false; submit.textContent = submit.dataset.oldText || "Отправить"; } }
