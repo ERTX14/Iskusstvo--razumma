@@ -368,8 +368,50 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!phoneInput.value) phoneInput.value = "+7 (";
     }
 
-    /* Форма регистрации обрабатывается отдельно в js/cloudflare-api.js.
-       Старый обработчик PHP удалён, чтобы не отправлять запрос на action="#". */
+    /* =========================
+       REGISTRATION FORM -> PHP
+       ========================= */
+    const registerForm = document.getElementById("registerForm");
+
+    if (registerForm) {
+        registerForm.addEventListener("submit", async event => {
+            event.preventDefault();
+
+            const submitButton = registerForm.querySelector(".submit-btn");
+            const originalText = submitButton?.textContent || "Отправить заявку";
+
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = "Отправляем...";
+            }
+
+            try {
+                const response = await fetch(registerForm.action, {
+                    method: "POST",
+                    body: new FormData(registerForm),
+                    headers: { "Accept": "application/json" }
+                });
+
+                const result = await response.json();
+
+                if (!response.ok || !result.success) {
+                    throw new Error(result.message || "Не удалось отправить заявку.");
+                }
+
+                alert("Заявка отправлена! Мы свяжемся с вами.");
+                registerForm.reset();
+
+                if (phoneInput) phoneInput.value = "+7 (";
+            } catch (error) {
+                alert(error.message || "Произошла ошибка. Попробуйте ещё раз.");
+            } finally {
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+                }
+            }
+        });
+    }
 
 
 });

@@ -1,0 +1,32 @@
+ИСКУССТВО РАЗУМА — ЗАЯВКИ ЧЕРЕЗ CLOUDFLARE, БЕЗ TELEGRAM И PHP
+
+ВАЖНО: этот вариант использует Cloudflare Worker + Cloudflare D1. GitHub Pages остаётся для HTML сайта и admin.html. PHP и Beget для приёма заявок не нужны.
+
+1. СОЗДАЙТЕ БАЗУ D1
+- Cloudflare Dashboard → Workers & Pages → D1 SQL Database → Create database.
+- Название: iskusstvo-razuma.
+- Откройте базу → Console/Query и выполните весь код из cloudflare-worker/schema.sql.
+- Скопируйте Database ID из настроек базы.
+
+2. СОЗДАЙТЕ/ОБНОВИТЕ WORKER
+- Cloudflare Dashboard → Workers & Pages → откройте существующий Worker «Искусство Разума API» (или создайте новый).
+- Вставьте содержимое cloudflare-worker/src.js в редактор Worker и сохраните/Deploy.
+- Settings → Bindings → Add → D1 database. Variable name ОБЯЗАТЕЛЬНО: DB. Выберите базу iskusstvo-razuma. Сохраните и снова Deploy.
+- Settings → Variables and Secrets: добавьте ADMIN_PASSWORD (секрет, длинный уникальный пароль) и SITE_ORIGIN = https://ertx14.github.io. Если сайт открывается по другому адресу, укажите его origin.
+
+3. ПОДКЛЮЧИТЕ САЙТ К WORKER
+- После Deploy скопируйте URL Worker, например https://iskusstvo-razuma-api.ИМЯ.workers.dev.
+- В файле js/cloudflare-api.js замените https://REPLACE-WITH-YOUR-WORKER.workers.dev на реальный URL. Без завершающего слэша.
+- Загрузите все файлы сайта в GitHub-репозиторий и дождитесь публикации GitHub Pages.
+
+4. ПРОВЕРКА
+- Откройте основной сайт, отправьте тестовую заявку. Должно появиться сообщение «Заявка отправлена».
+- Откройте https://ВАШ-САЙТ/admin.html, введите ADMIN_PASSWORD. Во вкладке «Заявки» должна появиться тестовая заявка.
+- Удалите тестовую заявку.
+
+ВАЖНО О БЕЗОПАСНОСТИ
+- Не публикуйте пароль в HTML/JS. Он хранится только в Cloudflare Worker Secrets.
+- Админ-панель доступна по адресу admin.html; без пароля список заявок не выдаётся.
+- Worker ограничивает запросы origin-ом сайта. Если ваш GitHub Pages URL другой, измените SITE_ORIGIN.
+- В архиве код подготовлен, но живое подключение не проверено: для него нужны ваши Cloudflare Dashboard и реальный URL Worker.
+- Если вы уже используете Worker с другим API, сделайте копию старого кода перед заменой.

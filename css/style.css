@@ -3936,3 +3936,12 @@ footer a[href^="tel:"] {
         line-height: 1.5;
     }
 }
+
+
+/* Дополнение: фирменный круглый курсор (только устройства с мышью). */
+@media (pointer:fine) {
+  body, a, button, input, select, textarea { cursor: none !important; }
+  .custom-cursor { position:fixed; left:-6px; top:-6px; z-index:99999; width:34px; height:34px; border:2px solid #f06b9b; border-radius:50%; pointer-events:none; transition:width .18s,height .18s,border-color .18s,background .18s; mix-blend-mode:multiply; }
+  .custom-cursor-dot { position:fixed; left:-3px; top:-3px; z-index:100000; width:6px; height:6px; border-radius:50%; background:#6ab8e8; pointer-events:none; }
+  .custom-cursor.is-hover { width:46px; height:46px; border-color:#f3a35b; background:rgba(243,163,91,.12); }
+}
