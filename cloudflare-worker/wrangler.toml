@@ -2,7 +2,8 @@ name = "iskusstvo-razuma-api"
 main = "src.js"
 compatibility_date = "2026-10-29"
 
-[[d1_databases]]
-binding = "DB"
-database_name = "iskusstvo-razuma"
-database_id = "4d1bf0e7-bba1-455d-a53c-38d1b5111283"
+# После создания D1 в Cloudflare вставьте database_id и раскомментируйте binding ниже.
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "iskusstvo-razuma"
+# database_id = "ВСТАВЬТЕ_DATABASE_ID"
